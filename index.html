@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>世界杯预测追踪</title>
+    <style>
+      :root {
+        --blue-950: #061a40;
+        --blue-900: #08285f;
+        --blue-800: #0b3f91;
+        --blue-700: #1556c0;
+        --blue-100: #eaf2ff;
+        --blue-050: #f5f9ff;
+        --ink: #111827;
+        --muted: #5b6577;
+        --line: #dbe4f0;
+        --panel: #ffffff;
+        --panel-soft: #f8fbff;
+        --hit: #1769d1;
+        --miss: #d83b3b;
+        --pending: #f5bc32;
+        --pending-text: #4b3300;
+        --shadow: 0 18px 50px rgba(5, 21, 55, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family:
+          Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial,
+          sans-serif;
+        background:
+          radial-gradient(circle at 14% 0%, rgba(76, 134, 255, 0.5), transparent 30%),
+          linear-gradient(135deg, var(--blue-950) 0%, var(--blue-900) 52%, #0d3c83 100%);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      select {
+        font: inherit;
+      }
+
+      .app {
+        width: min(1180px, calc(100vw - 40px));
+        margin: 0 auto;
+        padding: 34px 0 42px;
+      }
+
+      .hero {
+        color: #fff;
+        padding: 8px 4px 24px;
+      }
+
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .title-group h1 {
+        margin: 0;
+        font-size: clamp(30px, 4vw, 46px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .title-group p {
+        margin: 12px 0 0;
+        max-width: 650px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .date-picker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px);
+      }
+
+      .date-picker button {
+        min-width: 72px;
+        border: 0;
+        border-radius: 6px;
+        padding: 9px 12px;
+        color: rgba(255, 255, 255, 0.82);
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .date-picker button.active {
+        color: var(--blue-900);
+        background: #fff;
+      }
+
+      .metric-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 26px;
+      }
+
+      .hero-metric {
+        min-height: 94px;
+        padding: 18px 18px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .hero-metric span {
+        display: block;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 13px;
+      }
+
+      .hero-metric strong {
+        display: block;
+        margin-top: 8px;
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .workspace {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .section {
+        padding: 24px 26px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section:last-child {
+        border-bottom: 0;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.25;
+      }
+
+      .section-head p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .control-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip,
+      .select {
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        color: #23314a;
+        background: #fff;
+      }
+
+      .chip {
+        padding: 0 12px;
+        cursor: pointer;
+      }
+
+      .chip.active {
+        border-color: #8fb6ff;
+        color: var(--blue-900);
+        background: var(--blue-100);
+      }
+
+      .select {
+        padding: 0 12px;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 820px;
+      }
+
+      th,
+      td {
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: middle;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      th {
+        color: #566176;
+        background: var(--panel-soft);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .match {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .match strong {
+        font-size: 14px;
+      }
+
+      .match span,
+      .reason,
+      .subtle {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .prediction {
+        display: inline-flex;
+        align-items: center;
+        min-width: 66px;
+        justify-content: center;
+        border-radius: 7px;
+        padding: 7px 10px;
+        color: #0b2a5c;
+        background: var(--blue-100);
+        font-weight: 700;
+      }
+
+      .confidence {
+        display: inline-flex;
+        width: 52px;
+        justify-content: center;
+        border-radius: 7px;
+        padding: 6px 0;
+        font-weight: 700;
+      }
+
+      .confidence.high {
+        color: #083b8a;
+        background: #d8e8ff;
+      }
+
+      .confidence.mid {
+        color: #6b4700;
+        background: #fff0c9;
+      }
+
+      .confidence.low {
+        color: #783232;
+        background: #ffe1df;
+      }
+
+      .review-panel {
+        display: grid;
+        grid-template-columns: 0.9fr 1.4fr;
+        gap: 18px;
+      }
+
+      .summary-box {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+        padding: 18px;
+      }
+
+      .summary-box h3 {
+        margin: 0 0 10px;
+        font-size: 16px;
+      }
+
+      .summary-box p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .mini-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .mini-stat {
+        min-height: 74px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        background: #fff;
+      }
+
+      .mini-stat span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .mini-stat strong {
+        display: block;
+        margin-top: 5px;
+        color: var(--blue-900);
+        font-size: 22px;
+      }
+
+      .status-block {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 92px;
+        min-height: 38px;
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: #fff;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .status-hit {
+        background: var(--hit);
+      }
+
+      .status-miss {
+        background: var(--miss);
+      }
+
+      .status-pending {
+        color: var(--pending-text);
+        background: var(--pending);
+      }
+
+      .score {
+        font-weight: 800;
+      }
+
+      .schedule {
+        background: #fbfdff;
+      }
+
+      .schedule table {
+        min-width: 760px;
+      }
+
+      .stage {
+        display: inline-flex;
+        border-radius: 7px;
+        padding: 5px 9px;
+        color: #26334a;
+        background: #eef3fb;
+        font-weight: 700;
+        font-size: 12px;
+      }
+
+      .footer-note {
+        margin: 14px 0 0;
+        color: #657184;
+        font-size: 12px;
+      }
+
+      @media (max-width: 860px) {
+        .app {
+          width: min(100vw - 24px, 1180px);
+          padding-top: 20px;
+        }
+
+        .topline,
+        .section-head,
+        .review-panel {
+          display: block;
+        }
+
+        .date-picker {
+          margin-top: 18px;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .date-picker button {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .metric-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 20px 16px;
+        }
+
+        .control-row {
+          margin-top: 14px;
+        }
+
+        .summary-box {
+          margin-bottom: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div class="topline">
+          <div class="title-group">
+            <h1>世界杯预测追踪</h1>
+            <p>
+              用一个简洁页面记录每日预测、赛后复盘和完整赛程。蓝色表示预测中，红色表示预测不中，黄色表示待复盘。
+            </p>
+          </div>
+          <div class="date-picker" aria-label="日期切换">
+            <button type="button" data-date="昨天">昨天</button>
+            <button class="active" type="button" data-date="今天">今天</button>
+            <button type="button" data-date="明天">明天</button>
+          </div>
+        </div>
+
+        <div class="metric-strip" aria-label="总览数据">
+          <div class="hero-metric">
+            <span>今日比赛</span>
+            <strong id="todayCount">4 场</strong>
+          </div>
+          <div class="hero-metric">
+            <span>昨日命中</span>
+            <strong id="yesterdayHit">3 / 4</strong>
+          </div>
+          <div class="hero-metric">
+            <span>总命中率</span>
+            <strong id="overallAccuracy">68%</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <h2>每日预测</h2>
+              <p>只保留当天要看的关键信息：比赛、预测、比分、信心和一句理由。</p>
+            </div>
+            <div class="control-row" aria-label="预测筛选">
+              <button class="chip active" type="button" data-filter="all">全部</button>
+              <button class="chip" type="button" data-filter="high">高信心</button>
+              <button class="chip" type="button" data-filter="late">晚场</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="每日预测表">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>比赛</th>
+                  <th>预测</th>
+                  <th>比分</th>
+                  <th>信心</th>
+                  <th>理由</th>
+                </tr>
+              </thead>
+              <tbody id="predictionBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <h2>每日复盘与总数据</h2>
+              <p>复盘区域用大色块表达结果，避免只靠红绿识别。</p>
+            </div>
+          </div>
+
+          <div class="review-panel">
+            <aside class="summary-box">
+              <h3>昨日复盘摘要</h3>
+              <p>
+                昨天 4 场预测中命中 3 场。胜负方向判断稳定，比分偏差主要来自下半场进球数低估。
+              </p>
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <span>总预测场次</span>
+                  <strong id="totalPredictions">25</strong>
+                </div>
+                <div class="mini-stat">
+                  <span>胜平负命中率</span>
+                  <strong id="reviewAccuracy">68%</strong>
+                </div>
+                <div class="mini-stat">
+                  <span>精准比分</span>
+                  <strong>5</strong>
+                </div>
+                <div class="mini-stat">
+                  <span>最近 7 天</span>
+                  <strong>71%</strong>
+                </div>
+              </div>
+            </aside>
+
+            <div class="table-wrap">
+              <table aria-label="每日复盘表">
+                <thead>
+                  <tr>
+                    <th>比赛</th>
+                    <th>预测</th>
+                    <th>真实</th>
+                    <th>结果</th>
+                    <th>复盘</th>
+                  </tr>
+                </thead>
+                <tbody id="reviewBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="section schedule">
+          <div class="section-head">
+            <div>
+              <h2>世界杯赛程</h2>
+              <p>附加数据区，用来查完整赛程，不抢每日预测和复盘的主线。</p>
+            </div>
+            <div class="control-row">
+              <select class="select" id="stageFilter" aria-label="阶段筛选">
+                <option value="all">全部阶段</option>
+                <option value="小组赛">小组赛</option>
+                <option value="淘汰赛">淘汰赛</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table aria-label="世界杯赛程表">
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>阶段</th>
+                  <th>比赛</th>
+                  <th>开球</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody id="scheduleBody"></tbody>
+            </table>
+          </div>
+          <p class="footer-note">
+            当前为示例数据。后续可以替换为你在 GPT 中已经做过的预测和真实赛果。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./data.js"></script>
+    <script>
+      const { predictions, reviews, schedule } = window.WORLD_CUP_DATA;
+
+      const confidenceClass = {
+        高: "high",
+        中: "mid",
+        低: "low",
+      };
+
+      const statusMap = {
+        hit: ["预测中", "status-hit"],
+        miss: ["预测不中", "status-miss"],
+        pending: ["待复盘", "status-pending"],
+      };
+
+      function renderMetrics() {
+        const completedReviews = reviews.filter((item) => item.status !== "pending");
+        const hitReviews = reviews.filter((item) => item.status === "hit");
+        const accuracy = completedReviews.length
+          ? Math.round((hitReviews.length / completedReviews.length) * 100)
+          : 0;
+
+        document.getElementById("todayCount").textContent = `${predictions.length} 场`;
+        document.getElementById("yesterdayHit").textContent = `${hitReviews.length} / ${completedReviews.length}`;
+        document.getElementById("overallAccuracy").textContent = `${accuracy}%`;
+        document.getElementById("totalPredictions").textContent = String(predictions.length + completedReviews.length);
+        document.getElementById("reviewAccuracy").textContent = `${accuracy}%`;
+      }
+
+      function renderPredictions(filter = "all") {
+        const rows = predictions.filter((item) => {
+          if (filter === "all") return true;
+          return item.bucket.includes(filter);
+        });
+
+        document.getElementById("predictionBody").innerHTML = rows
+          .map(
+            (item) => `
+              <tr>
+                <td class="score">${item.time}</td>
+                <td>
+                  <div class="match">
+                    <strong>${item.match}</strong>
+                    <span>${item.phase}</span>
+                  </div>
+                </td>
+                <td><span class="prediction">${item.pick}</span></td>
+                <td class="score">${item.score}</td>
+                <td><span class="confidence ${confidenceClass[item.confidence]}">${item.confidence}</span></td>
+                <td class="reason">${item.reason}</td>
+              </tr>
+            `,
+          )
+          .join("");
+      }
+
+      function renderReviews() {
+        document.getElementById("reviewBody").innerHTML = reviews
+          .map((item) => {
+            const [label, className] = statusMap[item.status];
+            return `
+              <tr>
+                <td><strong>${item.match}</strong></td>
+                <td>${item.predict}</td>
+                <td>${item.actual}</td>
+                <td><span class="status-block ${className}">${label}</span></td>
+                <td class="reason">${item.note}</td>
+              </tr>
+            `;
+          })
+          .join("");
+      }
+
+      function renderSchedule(stage = "all") {
+        const rows = schedule.filter((item) => stage === "all" || item.stage === stage);
+        document.getElementById("scheduleBody").innerHTML = rows
+          .map(
+            (item) => `
+              <tr>
+                <td>${item.date}</td>
+                <td><span class="stage">${item.stage}</span></td>
+                <td><strong>${item.match}</strong></td>
+                <td>${item.kick}</td>
+                <td class="subtle">${item.state}</td>
+              </tr>
+            `,
+          )
+          .join("");
+      }
+
+      document.querySelectorAll(".date-picker button").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".date-picker button").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+        });
+      });
+
+      document.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          renderPredictions(button.dataset.filter);
+        });
+      });
+
+      document.getElementById("stageFilter").addEventListener("change", (event) => {
+        renderSchedule(event.target.value);
+      });
+
+      renderMetrics();
+      renderPredictions();
+      renderReviews();
+      renderSchedule();
+    </script>
+  </body>
+</html>
