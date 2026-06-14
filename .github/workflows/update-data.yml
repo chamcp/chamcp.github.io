@@ -1,0 +1,55 @@
+name: Update World Cup Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    env:
+      MATCHES_SOURCE_URL: ${{ secrets.MATCHES_SOURCE_URL }}
+      FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+      FOOTBALL_DATA_SEASON: "2026"
+      FOOTBALL_DATA_COMPETITION: "WC"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Import football-data.org data
+        if: env.FOOTBALL_DATA_TOKEN != ''
+        run: node scripts/import-football-data.mjs
+
+      - name: Validate and generate data.js
+        run: |
+          if [ -f automation/matches.imported.json ]; then
+            node scripts/update-data.mjs --source=automation/matches.imported.json --validate-only
+            node scripts/update-data.mjs --source=automation/matches.imported.json --skip-unchanged
+          else
+            node scripts/update-data.mjs --validate-only
+            node scripts/update-data.mjs --skip-unchanged
+          fi
+
+      - name: Smoke test generated data
+        run: node scripts/smoke-test-data.mjs
+
+      - name: Commit data update
+        run: |
+          if git diff --quiet data.js; then
+            echo "No data changes"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data.js
+            git commit -m "Auto update World Cup data"
+            git push
+          fi

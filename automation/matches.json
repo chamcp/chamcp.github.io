@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "sourceName": "本地赛程与比分数据",
+    "timezone": "Asia/Shanghai",
+    "note": "脚本会根据这里的比赛、比分和预测覆盖生成 data.js。以后接外部接口时，也可以生成同样结构的数据。"
+  },
+  "teamRatings": {
+    "阿根廷": 92,
+    "巴西": 91,
+    "法国": 90,
+    "英格兰": 88,
+    "德国": 87,
+    "葡萄牙": 87,
+    "西班牙": 86,
+    "荷兰": 85,
+    "比利时": 83,
+    "意大利": 83,
+    "克罗地亚": 82,
+    "乌拉圭": 81,
+    "丹麦": 80,
+    "瑞士": 79,
+    "塞内加尔": 78,
+    "美国": 77,
+    "日本": 77,
+    "摩洛哥": 77,
+    "韩国": 74,
+    "加纳": 74,
+    "墨西哥": 76,
+    "加拿大": 72
+  },
+  "matches": [
+    {
+      "id": "match-20260613-ger-kor",
+      "isoDate": "2026-06-13",
+      "kick": "18:00",
+      "stage": "小组赛",
+      "group": "A 组",
+      "home": "德国",
+      "away": "韩国",
+      "state": "已完赛",
+      "actualScore": "2-0",
+      "prediction": {
+        "pick": "德国胜",
+        "score": "2-1",
+        "confidence": "高",
+        "reason": "德国中前场压制力更强"
+      }
+    },
+    {
+      "id": "match-20260613-eng-usa",
+      "isoDate": "2026-06-13",
+      "kick": "21:00",
+      "stage": "小组赛",
+      "group": "B 组",
+      "home": "英格兰",
+      "away": "美国",
+      "state": "已完赛",
+      "actualScore": "1-1",
+      "prediction": {
+        "pick": "英格兰胜",
+        "score": "1-0",
+        "confidence": "中",
+        "reason": "英格兰控球更稳，但破密防不轻松"
+      }
+    },
+    {
+      "id": "match-20260614-por-sui",
+      "isoDate": "2026-06-14",
+      "kick": "00:00",
+      "stage": "小组赛",
+      "group": "C 组",
+      "home": "葡萄牙",
+      "away": "瑞士",
+      "state": "已完赛",
+      "actualScore": "2-0",
+      "prediction": {
+        "pick": "葡萄牙胜",
+        "score": "2-0",
+        "confidence": "高",
+        "reason": "葡萄牙边路推进优势明显"
+      }
+    },
+    {
+      "id": "match-20260614-ned-gha",
+      "isoDate": "2026-06-14",
+      "kick": "03:00",
+      "stage": "小组赛",
+      "group": "D 组",
+      "home": "荷兰",
+      "away": "加纳",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "荷兰胜",
+        "score": "2-1",
+        "confidence": "低",
+        "reason": "荷兰整体更强，但加纳反击有威胁"
+      }
+    },
+    {
+      "id": "match-20260614-arg-den",
+      "isoDate": "2026-06-14",
+      "kick": "18:00",
+      "stage": "小组赛",
+      "group": "C 组",
+      "home": "阿根廷",
+      "away": "丹麦",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "阿根廷胜",
+        "score": "2-0",
+        "confidence": "高",
+        "reason": "控球和前场效率更稳定"
+      }
+    },
+    {
+      "id": "match-20260614-fra-jpn",
+      "isoDate": "2026-06-14",
+      "kick": "21:00",
+      "stage": "小组赛",
+      "group": "D 组",
+      "home": "法国",
+      "away": "日本",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "法国胜",
+        "score": "2-1",
+        "confidence": "中",
+        "reason": "法国个人能力占优，但防线有波动"
+      }
+    },
+    {
+      "id": "match-20260615-bra-mar",
+      "isoDate": "2026-06-15",
+      "kick": "00:00",
+      "stage": "小组赛",
+      "group": "E 组",
+      "home": "巴西",
+      "away": "摩洛哥",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "巴西胜",
+        "score": "1-0",
+        "confidence": "高",
+        "reason": "巴西阵地战更强，进球数可能偏低"
+      }
+    },
+    {
+      "id": "match-20260615-esp-uru",
+      "isoDate": "2026-06-15",
+      "kick": "03:00",
+      "stage": "小组赛",
+      "group": "F 组",
+      "home": "西班牙",
+      "away": "乌拉圭",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "平局",
+        "score": "1-1",
+        "confidence": "低",
+        "reason": "两队节奏差异大，不确定性较高"
+      }
+    },
+    {
+      "id": "match-20260615-ita-sen",
+      "isoDate": "2026-06-15",
+      "kick": "18:00",
+      "stage": "小组赛",
+      "group": "G 组",
+      "home": "意大利",
+      "away": "塞内加尔",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "意大利胜",
+        "score": "1-0",
+        "confidence": "中",
+        "reason": "意大利防守组织更完整"
+      }
+    },
+    {
+      "id": "match-20260615-bel-mex",
+      "isoDate": "2026-06-15",
+      "kick": "21:00",
+      "stage": "小组赛",
+      "group": "H 组",
+      "home": "比利时",
+      "away": "墨西哥",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "平局",
+        "score": "1-1",
+        "confidence": "低",
+        "reason": "两队都有前场能力，走势容易拉锯"
+      }
+    },
+    {
+      "id": "match-20260616-cro-can",
+      "isoDate": "2026-06-16",
+      "kick": "00:00",
+      "stage": "小组赛",
+      "group": "A 组",
+      "home": "克罗地亚",
+      "away": "加拿大",
+      "state": "未开赛",
+      "actualScore": null,
+      "prediction": {
+        "pick": "克罗地亚胜",
+        "score": "2-1",
+        "confidence": "高",
+        "reason": "克罗地亚中场经验优势明显"
+      }
+    },
+    {
+      "id": "match-20260627-a1-b2",
+      "isoDate": "2026-06-27",
+      "kick": "22:00",
+      "stage": "淘汰赛",
+      "home": "A1",
+      "away": "B2",
+      "state": "待定",
+      "actualScore": null
+    },
+    {
+      "id": "match-20260628-c1-d2",
+      "isoDate": "2026-06-28",
+      "kick": "02:00",
+      "stage": "淘汰赛",
+      "home": "C1",
+      "away": "D2",
+      "state": "待定",
+      "actualScore": null
+    }
+  ]
+}
