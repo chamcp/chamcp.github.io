@@ -1,21 +1,4 @@
 window.WORLD_CUP_DATA = {
-  days: {
-    yesterday: {
-      label: "昨天",
-      predictions: [],
-      reviews: []
-    },
-    today: {
-      label: "今天",
-      predictions: [/* 今天预测 */],
-      reviews: [/* 今天复盘，通常可能为空 */]
-    },
-    tomorrow: {
-      label: "明天",
-      predictions: [/* 明天预测 */],
-      reviews: []
-    }
-  },
   schedule: [/* 赛程继续放这里 */]
 };
   predictions: [
