@@ -586,7 +586,7 @@
               <tbody id="scheduleBody"></tbody>
             </table>
           </div>
-          <p class="footer-note">
+          <p class="footer-note" id="dataUpdateNote">
             当前为示例数据。后续可以替换为你在 GPT 中已经做过的预测和真实赛果。
           </p>
         </div>
@@ -595,9 +595,14 @@
 
     <script src="./data.js"></script>
     <script>
-      const { days, schedule } = window.WORLD_CUP_DATA;
-      let activeDayKey = "today";
+      const trackerData = window.WORLD_CUP_DATA;
+      const { days, schedule } = trackerData;
+      let activeDayKey = trackerData.meta?.currentDayKey || "today";
       let activePredictionFilter = "all";
+
+      if (!days[activeDayKey]) {
+        activeDayKey = "today";
+      }
 
       const confidenceClass = {
         高: "high",
@@ -613,6 +618,10 @@
 
       function getActiveDay() {
         return days[activeDayKey] || days.today;
+      }
+
+      function getMatchName(item) {
+        return item.match || `${item.home} vs ${item.away}`;
       }
 
       function getAllPredictions() {
@@ -659,7 +668,7 @@
         const day = getActiveDay();
         const rows = (day.predictions || []).filter((item) => {
           if (filter === "all") return true;
-          return item.bucket.split(" ").includes(filter);
+          return (item.bucket || "").split(" ").includes(filter);
         });
         const predictionBody = document.getElementById("predictionBody");
 
@@ -698,7 +707,7 @@
         const reviewBody = document.getElementById("reviewBody");
 
         document.getElementById("reviewTitle").textContent = `${day.label}复盘摘要`;
-        document.getElementById("reviewSummary").textContent = day.summary;
+        document.getElementById("reviewSummary").textContent = day.summary || "暂无复盘摘要。";
 
         if (!day.reviews.length) {
           reviewBody.innerHTML = `
@@ -733,13 +742,26 @@
               <tr>
                 <td>${item.date}</td>
                 <td><span class="stage">${item.stage}</span></td>
-                <td><strong>${item.match}</strong></td>
+                <td><strong>${getMatchName(item)}</strong></td>
                 <td>${item.kick}</td>
                 <td class="subtle">${item.state}</td>
               </tr>
             `,
           )
           .join("");
+      }
+
+      function renderUpdateNote() {
+        const meta = trackerData.meta || {};
+        const modeText = meta.updateMode === "auto" ? "自动更新" : "手动更新";
+        document.getElementById("dataUpdateNote").textContent =
+          `当前数据来源：${meta.source || "未标注"}。最后更新：${meta.lastUpdated || "未标注"}（${modeText}）。`;
+      }
+
+      function syncActiveDateButton() {
+        document.querySelectorAll(".date-picker button").forEach((button) => {
+          button.classList.toggle("active", button.dataset.date === activeDayKey);
+        });
       }
 
       document.querySelectorAll(".date-picker button").forEach((button) => {
@@ -769,10 +791,12 @@
         renderSchedule(event.target.value);
       });
 
+      syncActiveDateButton();
       renderMetrics();
       renderPredictions();
       renderReviews();
       renderSchedule();
+      renderUpdateNote();
     </script>
   </body>
 </html>
