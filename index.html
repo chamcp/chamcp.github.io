@@ -80,6 +80,31 @@
         line-height: 1.7;
       }
 
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 7px;
+        padding: 6px 10px;
+        color: rgba(255, 255, 255, 0.78);
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 12px;
+        line-height: 1.2;
+      }
+
+      .meta-pill strong {
+        margin-left: 6px;
+        color: #fff;
+      }
+
       .date-picker {
         display: flex;
         align-items: center;
@@ -453,6 +478,10 @@
             <p>
               用一个简洁页面记录每日预测、赛后复盘和完整赛程。蓝色表示预测中，红色表示预测不中，黄色表示待复盘。
             </p>
+            <div class="meta-row" aria-label="数据更新状态">
+              <span class="meta-pill">更新方式<strong id="updateModeBadge">自动更新</strong></span>
+              <span class="meta-pill">最后更新<strong id="lastUpdatedBadge">读取中</strong></span>
+            </div>
           </div>
           <div class="date-picker" aria-label="日期切换">
             <button type="button" data-date="yesterday">昨天</button>
@@ -754,6 +783,8 @@
       function renderUpdateNote() {
         const meta = trackerData.meta || {};
         const modeText = meta.updateMode === "auto" ? "自动更新" : "手动更新";
+        document.getElementById("updateModeBadge").textContent = modeText;
+        document.getElementById("lastUpdatedBadge").textContent = meta.lastUpdated || "未标注";
         document.getElementById("dataUpdateNote").textContent =
           `当前数据来源：${meta.source || "未标注"}。最后更新：${meta.lastUpdated || "未标注"}（${modeText}）。`;
       }
