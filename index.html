@@ -210,6 +210,12 @@
         background: #fff;
       }
 
+      .empty-state {
+        color: var(--muted);
+        text-align: center;
+        background: #fff;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -449,19 +455,19 @@
             </p>
           </div>
           <div class="date-picker" aria-label="日期切换">
-            <button type="button" data-date="昨天">昨天</button>
-            <button class="active" type="button" data-date="今天">今天</button>
-            <button type="button" data-date="明天">明天</button>
+            <button type="button" data-date="yesterday">昨天</button>
+            <button class="active" type="button" data-date="today">今天</button>
+            <button type="button" data-date="tomorrow">明天</button>
           </div>
         </div>
 
         <div class="metric-strip" aria-label="总览数据">
           <div class="hero-metric">
-            <span>今日比赛</span>
+            <span>当前比赛</span>
             <strong id="todayCount">4 场</strong>
           </div>
           <div class="hero-metric">
-            <span>昨日命中</span>
+            <span>当前命中</span>
             <strong id="yesterdayHit">3 / 4</strong>
           </div>
           <div class="hero-metric">
@@ -512,10 +518,8 @@
 
           <div class="review-panel">
             <aside class="summary-box">
-              <h3>昨日复盘摘要</h3>
-              <p>
-                昨天 4 场预测中命中 3 场。胜负方向判断稳定，比分偏差主要来自下半场进球数低估。
-              </p>
+              <h3 id="reviewTitle">复盘摘要</h3>
+              <p id="reviewSummary"></p>
               <div class="mini-stats">
                 <div class="mini-stat">
                   <span>总预测场次</span>
@@ -527,11 +531,11 @@
                 </div>
                 <div class="mini-stat">
                   <span>精准比分</span>
-                  <strong>5</strong>
+                  <strong id="exactScores">0</strong>
                 </div>
                 <div class="mini-stat">
                   <span>最近 7 天</span>
-                  <strong>71%</strong>
+                  <strong id="recentAccuracy">0%</strong>
                 </div>
               </div>
             </aside>
@@ -591,7 +595,9 @@
 
     <script src="./data.js"></script>
     <script>
-      const { predictions, reviews, schedule } = window.WORLD_CUP_DATA;
+      const { days, schedule } = window.WORLD_CUP_DATA;
+      let activeDayKey = "today";
+      let activePredictionFilter = "all";
 
       const confidenceClass = {
         高: "high",
@@ -605,27 +611,68 @@
         pending: ["待复盘", "status-pending"],
       };
 
-      function renderMetrics() {
-        const completedReviews = reviews.filter((item) => item.status !== "pending");
-        const hitReviews = reviews.filter((item) => item.status === "hit");
-        const accuracy = completedReviews.length
-          ? Math.round((hitReviews.length / completedReviews.length) * 100)
-          : 0;
-
-        document.getElementById("todayCount").textContent = `${predictions.length} 场`;
-        document.getElementById("yesterdayHit").textContent = `${hitReviews.length} / ${completedReviews.length}`;
-        document.getElementById("overallAccuracy").textContent = `${accuracy}%`;
-        document.getElementById("totalPredictions").textContent = String(predictions.length + completedReviews.length);
-        document.getElementById("reviewAccuracy").textContent = `${accuracy}%`;
+      function getActiveDay() {
+        return days[activeDayKey] || days.today;
       }
 
-      function renderPredictions(filter = "all") {
-        const rows = predictions.filter((item) => {
-          if (filter === "all") return true;
-          return item.bucket.includes(filter);
-        });
+      function getAllPredictions() {
+        return Object.values(days).flatMap((day) => day.predictions || []);
+      }
 
-        document.getElementById("predictionBody").innerHTML = rows
+      function getAllReviews() {
+        return Object.values(days).flatMap((day) => day.reviews || []);
+      }
+
+      function getCompletedReviews(items) {
+        return items.filter((item) => item.status !== "pending");
+      }
+
+      function getHitReviews(items) {
+        return items.filter((item) => item.status === "hit");
+      }
+
+      function formatRate(hitCount, totalCount) {
+        return totalCount ? `${Math.round((hitCount / totalCount) * 100)}%` : "0%";
+      }
+
+      function renderMetrics() {
+        const day = getActiveDay();
+        const dayReviews = day.reviews || [];
+        const completedDayReviews = getCompletedReviews(dayReviews);
+        const hitDayReviews = getHitReviews(completedDayReviews);
+        const allCompletedReviews = getCompletedReviews(getAllReviews());
+        const allHitReviews = getHitReviews(allCompletedReviews);
+        const overallRate = formatRate(allHitReviews.length, allCompletedReviews.length);
+
+        document.getElementById("todayCount").textContent = `${(day.predictions || []).length} 场`;
+        document.getElementById("yesterdayHit").textContent = `${hitDayReviews.length} / ${completedDayReviews.length}`;
+        document.getElementById("overallAccuracy").textContent = overallRate;
+        document.getElementById("totalPredictions").textContent = String(getAllPredictions().length);
+        document.getElementById("reviewAccuracy").textContent = overallRate;
+        document.getElementById("exactScores").textContent = String(
+          allCompletedReviews.filter((item) => item.exact).length,
+        );
+        document.getElementById("recentAccuracy").textContent = overallRate;
+      }
+
+      function renderPredictions(filter = activePredictionFilter) {
+        const day = getActiveDay();
+        const rows = (day.predictions || []).filter((item) => {
+          if (filter === "all") return true;
+          return item.bucket.split(" ").includes(filter);
+        });
+        const predictionBody = document.getElementById("predictionBody");
+
+        if (!rows.length) {
+          predictionBody.innerHTML = `
+            <tr>
+              <td class="empty-state" colspan="6">暂无${day.label}符合条件的预测。</td>
+            </tr>
+          `;
+          return;
+        }
+
+        predictionBody.innerHTML = rows
           .map(
             (item) => `
               <tr>
@@ -647,9 +694,24 @@
       }
 
       function renderReviews() {
-        document.getElementById("reviewBody").innerHTML = reviews
+        const day = getActiveDay();
+        const reviewBody = document.getElementById("reviewBody");
+
+        document.getElementById("reviewTitle").textContent = `${day.label}复盘摘要`;
+        document.getElementById("reviewSummary").textContent = day.summary;
+
+        if (!day.reviews.length) {
+          reviewBody.innerHTML = `
+            <tr>
+              <td class="empty-state" colspan="5">暂无${day.label}复盘，比赛结束后再补充。</td>
+            </tr>
+          `;
+          return;
+        }
+
+        reviewBody.innerHTML = day.reviews
           .map((item) => {
-            const [label, className] = statusMap[item.status];
+            const [label, className] = statusMap[item.status] || statusMap.pending;
             return `
               <tr>
                 <td><strong>${item.match}</strong></td>
@@ -682,16 +744,24 @@
 
       document.querySelectorAll(".date-picker button").forEach((button) => {
         button.addEventListener("click", () => {
+          activeDayKey = button.dataset.date;
+          activePredictionFilter = "all";
           document.querySelectorAll(".date-picker button").forEach((item) => item.classList.remove("active"));
           button.classList.add("active");
+          document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
+          document.querySelector('[data-filter="all"]').classList.add("active");
+          renderMetrics();
+          renderPredictions();
+          renderReviews();
         });
       });
 
       document.querySelectorAll("[data-filter]").forEach((button) => {
         button.addEventListener("click", () => {
+          activePredictionFilter = button.dataset.filter;
           document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
           button.classList.add("active");
-          renderPredictions(button.dataset.filter);
+          renderPredictions();
         });
       });
 
