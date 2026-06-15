@@ -400,6 +400,19 @@
         background: var(--pending);
       }
 
+      .score-hit {
+        background: #188351;
+      }
+
+      .score-miss {
+        background: #828e9e;
+      }
+
+      .score-pending {
+        color: var(--pending-text);
+        background: var(--pending);
+      }
+
       .score {
         font-weight: 800;
       }
@@ -508,6 +521,13 @@
 
         th {
           font-size: 11px;
+        }
+
+        .status-block {
+          min-width: 64px;
+          min-height: 28px;
+          font-size: 11px;
+          padding: 4px 8px;
         }
 
         .status-block {
@@ -647,7 +667,7 @@
           <div class="section-head">
             <div>
               <h2>每日复盘与总数据</h2>
-              <p>复盘区域用大色块表达结果，避免只靠红绿识别。</p>
+              <p>复盘区域用大色块表达结果，蓝色/绿色表示命中，红色表示不中，黄色表示待复盘。</p>
             </div>
           </div>
 
@@ -682,7 +702,8 @@
                     <th>比赛</th>
                     <th>预测</th>
                     <th>真实</th>
-                    <th>结果</th>
+                    <th>胜负</th>
+                    <th>比分</th>
                     <th>复盘</th>
                   </tr>
                 </thead>
@@ -749,6 +770,12 @@
         hit: ["预测中", "status-hit"],
         miss: ["预测不中", "status-miss"],
         pending: ["待复盘", "status-pending"],
+      };
+
+      const exactMap = {
+        hit: ["比分精准", "score-hit"],
+        miss: ["偏差", "score-miss"],
+        pending: ["待定", "score-pending"],
       };
 
       function getActiveDay() {
@@ -847,7 +874,7 @@
         if (!day.reviews.length) {
           reviewBody.innerHTML = `
             <tr>
-              <td class="empty-state" colspan="5">暂无${day.label}复盘，比赛结束后再补充。</td>
+              <td class="empty-state" colspan="6">暂无${day.label}复盘，比赛结束后再补充。</td>
             </tr>
           `;
           return;
@@ -855,13 +882,16 @@
 
         reviewBody.innerHTML = day.reviews
           .map((item) => {
-            const [label, className] = statusMap[item.status] || statusMap.pending;
+            const [dirLabel, dirClass] = statusMap[item.status] || statusMap.pending;
+            const exactKey = item.status === "pending" ? "pending" : item.exact ? "hit" : "miss";
+            const [exactLabel, exactClass] = exactMap[exactKey] || exactMap.pending;
             return `
               <tr>
                 <td><strong>${item.match}</strong></td>
                 <td>${item.predict}</td>
                 <td>${item.actual}</td>
-                <td><span class="status-block ${className}">${label}</span></td>
+                <td><span class="status-block ${dirClass}">${dirLabel}</span></td>
+                <td><span class="status-block ${exactClass}">${exactLabel}</span></td>
                 <td class="reason">${item.note}</td>
               </tr>
             `;
