@@ -241,10 +241,10 @@
         background: #fff;
       }
 
-      table {
+        table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 820px;
+        min-width: 640px;
       }
 
       th,
@@ -465,6 +465,111 @@
 
         .summary-box {
           margin-bottom: 16px;
+        }
+
+        table {
+          min-width: 0;
+        }
+
+        th,
+        td {
+          padding: 10px 10px;
+          font-size: 13px;
+        }
+
+        th:last-child,
+        td:last-child {
+          display: none;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .hero-metric strong {
+          font-size: 22px;
+        }
+
+        h2 {
+          font-size: 17px;
+        }
+
+        .section {
+          padding: 14px 12px;
+        }
+
+        .section-head p {
+          font-size: 12px;
+        }
+
+        th,
+        td {
+          padding: 8px 6px;
+          font-size: 12px;
+        }
+
+        th {
+          font-size: 11px;
+        }
+
+        .status-block {
+          min-width: 64px;
+          min-height: 28px;
+          font-size: 11px;
+          padding: 4px 8px;
+        }
+
+        .prediction {
+          min-width: 50px;
+          font-size: 12px;
+          padding: 5px 7px;
+        }
+
+        .confidence {
+          width: 40px;
+          font-size: 12px;
+          padding: 4px 0;
+        }
+
+        .match strong {
+          font-size: 12px;
+        }
+
+        .match span,
+        .reason,
+        .subtle {
+          font-size: 11px;
+        }
+
+        .meta-pill {
+          font-size: 11px;
+          min-height: 26px;
+          padding: 4px 8px;
+        }
+
+        .date-picker button {
+          font-size: 13px;
+          min-width: 0;
+          padding: 7px 8px;
+        }
+
+        .chip,
+        .select {
+          height: 30px;
+          font-size: 12px;
+          padding: 0 8px;
+        }
+
+        .mini-stat strong {
+          font-size: 18px;
+        }
+
+        .mini-stat {
+          min-height: 60px;
+          padding: 10px;
+        }
+
+        .table-wrap {
+          border-radius: 6px;
+          margin: 0 -4px;
         }
       }
     </style>
