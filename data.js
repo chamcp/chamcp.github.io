@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-15 16:17",
+    "lastUpdated": "2026-06-16 02:19",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,144 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "6月14日",
-      "isoDate": "2026-06-14",
-      "summary": "昨天 5 场预测中，已复盘 5 场，命中 2 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-6",
-          "matchId": "match-wik-6",
-          "time": "06:00",
-          "match": "巴西 vs 摩洛哥",
-          "phase": "小组赛 C 组",
-          "pick": "巴西胜",
-          "score": "2-0",
-          "confidence": "高",
-          "bucket": "high",
-          "reason": "巴西个人能力和整体配合均占优",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-7",
-          "matchId": "match-wik-7",
-          "time": "09:00",
-          "match": "海地 vs 苏格兰",
-          "phase": "小组赛 C 组",
-          "pick": "苏格兰胜",
-          "score": "0-2",
-          "confidence": "高",
-          "bucket": "high",
-          "reason": "苏格兰整体实力和经验明显占优",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-8",
-          "matchId": "match-wik-8",
-          "time": "12:00",
-          "match": "澳大利亚 vs 土耳其",
-          "phase": "小组赛 D 组",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low",
-          "reason": "两队实力接近，比赛容易陷入僵持",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-9",
-          "matchId": "match-wik-9",
-          "time": "01:00",
-          "match": "德国 vs 库拉索",
-          "phase": "小组赛 E 组",
-          "pick": "德国胜",
-          "score": "3-0",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "德国实力碾压，库拉索差距过大",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-10",
-          "matchId": "match-wik-10",
-          "time": "04:00",
-          "match": "荷兰 vs 日本",
-          "phase": "小组赛 F 组",
-          "pick": "荷兰胜",
-          "score": "2-0",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "荷兰攻防体系成熟，日本难破局",
-          "source": "override"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-6",
-          "predictionId": "pred-wik-6",
-          "matchId": "match-wik-6",
-          "match": "巴西 vs 摩洛哥",
-          "predict": "巴西胜 2-0",
-          "actual": "1-1",
-          "actualScore": "1-1",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-7",
-          "predictionId": "pred-wik-7",
-          "matchId": "match-wik-7",
-          "match": "海地 vs 苏格兰",
-          "predict": "苏格兰胜 0-2",
-          "actual": "0-1",
-          "actualScore": "0-1",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        },
-        {
-          "id": "review-wik-8",
-          "predictionId": "pred-wik-8",
-          "matchId": "match-wik-8",
-          "match": "澳大利亚 vs 土耳其",
-          "predict": "平局 1-1",
-          "actual": "2-0",
-          "actualScore": "2-0",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-9",
-          "predictionId": "pred-wik-9",
-          "matchId": "match-wik-9",
-          "match": "德国 vs 库拉索",
-          "predict": "德国胜 3-0",
-          "actual": "7-1",
-          "actualScore": "7-1",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        },
-        {
-          "id": "review-wik-10",
-          "predictionId": "pred-wik-10",
-          "matchId": "match-wik-10",
-          "match": "荷兰 vs 日本",
-          "predict": "荷兰胜 2-0",
-          "actual": "2-2",
-          "actualScore": "2-2",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "6月15日",
       "isoDate": "2026-06-15",
-      "summary": "今天 3 场预测中，已复盘 2 场，命中 1 场，还有 1 场待复盘。",
+      "summary": "昨天 3 场预测中，已复盘 2 场，命中 1 场，还有 1 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-11",
@@ -236,11 +101,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "6月16日",
       "isoDate": "2026-06-16",
-      "summary": "明天有 4 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-15",
@@ -292,6 +157,129 @@ window.WORLD_CUP_DATA = {
           "confidence": "高",
           "bucket": "high late",
           "reason": "法国阵容深度和大赛经验均占优",
+          "source": "override"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-15",
+          "predictionId": "pred-wik-15",
+          "matchId": "match-wik-15",
+          "match": "沙特 vs 乌拉圭",
+          "predict": "乌拉圭胜 0-2",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-16",
+          "predictionId": "pred-wik-16",
+          "matchId": "match-wik-16",
+          "match": "伊朗 vs 新西兰",
+          "predict": "伊朗胜 1-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-13",
+          "predictionId": "pred-wik-13",
+          "matchId": "match-wik-13",
+          "match": "西班牙 vs 佛得角",
+          "predict": "西班牙胜 3-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-17",
+          "predictionId": "pred-wik-17",
+          "matchId": "match-wik-17",
+          "match": "法国 vs 塞内加尔",
+          "predict": "法国胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "6月17日",
+      "isoDate": "2026-06-17",
+      "summary": "明天有 5 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-18",
+          "matchId": "match-wik-18",
+          "time": "06:00",
+          "match": "伊拉克 vs 挪威",
+          "phase": "小组赛 I 组",
+          "pick": "挪威胜",
+          "score": "0-2",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "挪威整体实力和身体素质占优",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-19",
+          "matchId": "match-wik-19",
+          "time": "09:00",
+          "match": "阿根廷 vs 阿尔及利亚",
+          "phase": "小组赛 J 组",
+          "pick": "阿根廷胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high",
+          "reason": "阿根廷卫冕冠军底蕴，整体实力远强于对手",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-20",
+          "matchId": "match-wik-20",
+          "time": "12:00",
+          "match": "奥地利 vs 约旦",
+          "phase": "小组赛 J 组",
+          "pick": "奥地利胜",
+          "score": "2-0",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "奥地利欧战经验丰富，技术更细腻",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-21",
+          "matchId": "match-wik-21",
+          "time": "01:00",
+          "match": "葡萄牙 vs 刚果金",
+          "phase": "小组赛 K 组",
+          "pick": "葡萄牙胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high late",
+          "reason": "葡萄牙进攻线豪华，刚果金难以应对",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-22",
+          "matchId": "match-wik-22",
+          "time": "04:00",
+          "match": "英格兰 vs 克罗地亚",
+          "phase": "小组赛 L 组",
+          "pick": "英格兰胜",
+          "score": "2-1",
+          "confidence": "中",
+          "bucket": "mid late",
+          "reason": "英格兰青春风暴，克罗地亚经验但老化",
           "source": "override"
         }
       ],
