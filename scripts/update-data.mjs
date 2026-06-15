@@ -172,6 +172,7 @@ async function isOutputContentUnchanged(filePath, nextText) {
 }
 
 function buildTrackerData(source, today, lastUpdated, overrides = {}) {
+  const sourceType = normalizeSourceType(source.meta?.sourceType, source.meta?.sourceName);
   const matches = [...(source.matches || [])]
     .map((match) => normalizeMatch(match, source.teamRatings || {}, overrides))
     .sort(compareMatches);
@@ -197,6 +198,8 @@ function buildTrackerData(source, today, lastUpdated, overrides = {}) {
       timezone: source.meta?.timezone || timezone,
       updateMode: "auto",
       currentDayKey: "today",
+      sourceType,
+      sourceLabel: getSourceLabel(sourceType),
       source: `自动生成：${source.meta?.sourceName || "比赛数据"}`,
       note: "data.js 由 scripts/update-data.mjs 生成；以后只需要更新数据源或接入外部接口。",
     },
@@ -204,6 +207,21 @@ function buildTrackerData(source, today, lastUpdated, overrides = {}) {
     days,
     schedule,
   };
+}
+
+function normalizeSourceType(sourceType, sourceName = "") {
+  if (sourceType) return sourceType;
+  if (/football-data/i.test(sourceName)) return "football-data";
+  if (/^https?:\/\//i.test(sourceName)) return "remote";
+  return "local";
+}
+
+function getSourceLabel(sourceType) {
+  return {
+    local: "本地数据",
+    "football-data": "真实接口",
+    remote: "远程数据",
+  }[sourceType] || "数据源";
 }
 
 function normalizeMatch(match, ratings, overrides) {

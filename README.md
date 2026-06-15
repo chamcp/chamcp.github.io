@@ -42,6 +42,8 @@ node scripts/update-data.mjs --validate-only
 
 如果使用 football-data.org，在 GitHub 仓库的 Secrets 里添加 `FOOTBALL_DATA_TOKEN`。有这个密钥时，Actions 会自动抓赛程/比分；没有密钥时，仍然使用本地数据源。
 
+页面顶部的“数据源”会显示当前使用的是 `本地数据`、`真实接口` 或其他远程数据，方便确认自动化是否真正接上外部来源。
+
 ## GitHub Pages 建议
 
 用 GitHub 用户名 `chamcp` 创建仓库：

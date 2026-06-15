@@ -1,6 +1,7 @@
 {
   "meta": {
     "sourceName": "本地赛程与比分数据",
+    "sourceType": "local",
     "timezone": "Asia/Shanghai",
     "note": "脚本会根据这里的比赛、比分和预测覆盖生成 data.js。以后接外部接口时，也可以生成同样结构的数据。"
   },

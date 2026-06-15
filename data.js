@@ -1,10 +1,12 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-15 08:54",
+    "lastUpdated": "2026-06-15 14:04",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
+    "sourceType": "local",
+    "sourceLabel": "本地数据",
     "source": "自动生成：本地赛程与比分数据",
     "note": "data.js 由 scripts/update-data.mjs 生成；以后只需要更新数据源或接入外部接口。"
   },

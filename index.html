@@ -480,6 +480,7 @@
             </p>
             <div class="meta-row" aria-label="数据更新状态">
               <span class="meta-pill">更新方式<strong id="updateModeBadge">自动更新</strong></span>
+              <span class="meta-pill">数据源<strong id="sourceBadge">读取中</strong></span>
               <span class="meta-pill">最后更新<strong id="lastUpdatedBadge">读取中</strong></span>
             </div>
           </div>
@@ -783,10 +784,12 @@
       function renderUpdateNote() {
         const meta = trackerData.meta || {};
         const modeText = meta.updateMode === "auto" ? "自动更新" : "手动更新";
+        const sourceText = meta.sourceLabel || "未标注";
         document.getElementById("updateModeBadge").textContent = modeText;
+        document.getElementById("sourceBadge").textContent = sourceText;
         document.getElementById("lastUpdatedBadge").textContent = meta.lastUpdated || "未标注";
         document.getElementById("dataUpdateNote").textContent =
-          `当前数据来源：${meta.source || "未标注"}。最后更新：${meta.lastUpdated || "未标注"}（${modeText}）。`;
+          `当前数据来源：${meta.source || "未标注"}。状态：${sourceText}，${modeText}。最后更新：${meta.lastUpdated || "未标注"}。`;
       }
 
       function syncActiveDateButton() {

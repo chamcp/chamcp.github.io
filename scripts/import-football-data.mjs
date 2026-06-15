@@ -23,6 +23,7 @@ const matches = (payload.matches || []).map((match) => normalizeFootballDataMatc
 const nextSource = {
   meta: {
     sourceName: `football-data.org ${competition} ${season}`,
+    sourceType: "football-data",
     timezone,
     importedAt: getNowText(timezone),
     note: "由 scripts/import-football-data.mjs 从 football-data.org 导入。",
