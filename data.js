@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-14 19:28",
+    "lastUpdated": "2026-06-15 08:54",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -16,119 +16,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "6月13日",
-      "isoDate": "2026-06-13",
-      "summary": "昨天 4 场预测中，已复盘 3 场，命中 2 场，还有 1 场待复盘。",
-      "predictions": [
-        {
-          "id": "pred-20260613-ger-kor",
-          "matchId": "match-20260613-ger-kor",
-          "time": "18:00",
-          "match": "德国 vs 韩国",
-          "phase": "小组赛 A 组",
-          "pick": "德国胜",
-          "score": "2-1",
-          "confidence": "高",
-          "bucket": "high",
-          "reason": "德国中前场压制力更强",
-          "source": "seed"
-        },
-        {
-          "id": "pred-20260613-eng-usa",
-          "matchId": "match-20260613-eng-usa",
-          "time": "21:00",
-          "match": "英格兰 vs 美国",
-          "phase": "小组赛 B 组",
-          "pick": "英格兰胜",
-          "score": "1-0",
-          "confidence": "中",
-          "bucket": "mid",
-          "reason": "英格兰控球更稳，但破密防不轻松",
-          "source": "seed"
-        },
-        {
-          "id": "pred-20260614-por-sui",
-          "matchId": "match-20260614-por-sui",
-          "time": "00:00",
-          "match": "葡萄牙 vs 瑞士",
-          "phase": "小组赛 C 组",
-          "pick": "葡萄牙胜",
-          "score": "2-0",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "葡萄牙边路推进优势明显",
-          "source": "seed"
-        },
-        {
-          "id": "pred-20260614-ned-gha",
-          "matchId": "match-20260614-ned-gha",
-          "time": "03:00",
-          "match": "荷兰 vs 加纳",
-          "phase": "小组赛 D 组",
-          "pick": "荷兰胜",
-          "score": "2-1",
-          "confidence": "低",
-          "bucket": "low late",
-          "reason": "荷兰整体更强，但加纳反击有威胁",
-          "source": "seed"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-20260613-ger-kor",
-          "predictionId": "pred-20260613-ger-kor",
-          "matchId": "match-20260613-ger-kor",
-          "match": "德国 vs 韩国",
-          "predict": "德国胜 2-1",
-          "actual": "2-0",
-          "actualScore": "2-0",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        },
-        {
-          "id": "review-20260613-eng-usa",
-          "predictionId": "pred-20260613-eng-usa",
-          "matchId": "match-20260613-eng-usa",
-          "match": "英格兰 vs 美国",
-          "predict": "英格兰胜 1-0",
-          "actual": "1-1",
-          "actualScore": "1-1",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-20260614-por-sui",
-          "predictionId": "pred-20260614-por-sui",
-          "matchId": "match-20260614-por-sui",
-          "match": "葡萄牙 vs 瑞士",
-          "predict": "葡萄牙胜 2-0",
-          "actual": "2-0",
-          "actualScore": "2-0",
-          "status": "hit",
-          "exact": true,
-          "note": "方向和比分均精准"
-        },
-        {
-          "id": "review-20260614-ned-gha",
-          "predictionId": "pred-20260614-ned-gha",
-          "matchId": "match-20260614-ned-gha",
-          "match": "荷兰 vs 加纳",
-          "predict": "荷兰胜 2-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
-          "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "6月14日",
       "isoDate": "2026-06-14",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-20260614-arg-den",
@@ -234,11 +124,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "6月15日",
       "isoDate": "2026-06-15",
-      "summary": "明天有 3 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-20260615-ita-sen",
@@ -280,6 +170,51 @@ window.WORLD_CUP_DATA = {
           "source": "seed"
         }
       ],
+      "reviews": [
+        {
+          "id": "review-20260615-ita-sen",
+          "predictionId": "pred-20260615-ita-sen",
+          "matchId": "match-20260615-ita-sen",
+          "match": "意大利 vs 塞内加尔",
+          "predict": "意大利胜 1-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-20260615-bel-mex",
+          "predictionId": "pred-20260615-bel-mex",
+          "matchId": "match-20260615-bel-mex",
+          "match": "比利时 vs 墨西哥",
+          "predict": "平局 1-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-20260616-cro-can",
+          "predictionId": "pred-20260616-cro-can",
+          "matchId": "match-20260616-cro-can",
+          "match": "克罗地亚 vs 加拿大",
+          "predict": "克罗地亚胜 2-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "6月16日",
+      "isoDate": "2026-06-16",
+      "summary": "明天暂无已录入比赛。",
+      "predictions": [],
       "reviews": []
     }
   },
