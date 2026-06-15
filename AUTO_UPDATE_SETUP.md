@@ -1,38 +1,23 @@
-# 自动更新开通步骤
+# 自动更新说明
 
-现在项目已经支持两种自动更新方式：
+自动更新已配置完成，无需任何 API key。
 
-1. 没有接口密钥：每 30 分钟检查一次本地数据源，内容没变就不提交。
-2. 有 football-data.org 密钥：每 30 分钟抓一次真实赛程/比分，有变化才生成并提交 `data.js`。
+## 数据来源
 
-## 先上传这些文件
-
-把下面这些新增或修改的文件上传到 GitHub 仓库：
-
-- `data.js`
-- `index.html`
-- `README.md`
-- `.gitignore`
-- `automation/matches.json`
-- `automation/prediction-overrides.json`
-- `automation/team-names.zh.json`
-- `automation/football-data.sample.json`
-- `automation/README.md`
-- `scripts/update-data.mjs`
-- `scripts/import-football-data.mjs`
-- `scripts/smoke-test-data.mjs`
-- `.github/workflows/update-data.yml`
+网站从 **wheniskickoff.com** 的免费公开 API 获取世界杯实时数据：
+- 完全免费，无需注册，无需 API key
+- 每 30 分钟由 GitHub Actions 自动抓取
+- 自动更新比赛比分和状态
+- 自动对比你的预测与实际赛果，计算命中率
 
 ## 开启 GitHub Actions
 
-上传后进入 GitHub 仓库：
+代码已全部就绪。上传到 GitHub 后：
 
-1. 点顶部 `Actions`。
+1. 进入 GitHub 仓库，点顶部 `Actions`。
 2. 如果页面提示启用 workflows，就点启用。
 3. 打开 `Update World Cup Data`。
 4. 点 `Run workflow`，手动跑一次。
-
-跑成功后，GitHub 会自动提交更新后的 `data.js`。网站会继续通过 GitHub Pages 显示。
 
 如果运行失败并提示没有权限提交：
 
@@ -42,18 +27,17 @@
 4. 选择 `Read and write permissions`。
 5. 保存后回到 `Actions` 再运行一次。
 
-## 接入真实赛程/比分
+## 添加你的预测
 
-如果要用 football-data.org：
+编辑 `automation/prediction-overrides.json`，按以下格式添加：
 
-1. 注册 football-data.org 并拿到 API token。
-2. 回到 GitHub 仓库，点 `Settings`。
-3. 找到 `Secrets and variables` -> `Actions`。
-4. 新建一个 Repository secret：
-   - Name: `FOOTBALL_DATA_TOKEN`
-   - Secret: 粘贴你的 token
-5. 再到 `Actions` 里手动运行一次 `Update World Cup Data`。
+```json
+"2026-06-15|德国|库拉索": {
+  "pick": "德国胜",
+  "score": "2-0",
+  "confidence": "高",
+  "reason": "你的理由"
+}
+```
 
-没有这个 token 时，网站不会坏，只是继续使用本地数据源。
-
-接入成功后，网页顶部的“数据源”会从“本地数据”变成“真实接口”。
+键的格式为 `{日期}|{主队中文名}|{客队中文名}`。日期使用北京时间（Asia/Shanghai）。

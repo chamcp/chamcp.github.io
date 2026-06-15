@@ -11,11 +11,6 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
-    env:
-      MATCHES_SOURCE_URL: ${{ secrets.MATCHES_SOURCE_URL }}
-      FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-      FOOTBALL_DATA_SEASON: "2026"
-      FOOTBALL_DATA_COMPETITION: "WC"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -25,19 +20,13 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Import football-data.org data
-        if: env.FOOTBALL_DATA_TOKEN != ''
-        run: node scripts/import-football-data.mjs
+      - name: Import from wheniskickoff.com (free, no auth)
+        run: node scripts/import-wheniskickoff.mjs
 
       - name: Validate and generate data.js
         run: |
-          if [ -f automation/matches.imported.json ]; then
-            node scripts/update-data.mjs --source=automation/matches.imported.json --validate-only
-            node scripts/update-data.mjs --source=automation/matches.imported.json --skip-unchanged
-          else
-            node scripts/update-data.mjs --validate-only
-            node scripts/update-data.mjs --skip-unchanged
-          fi
+          node scripts/update-data.mjs --source=automation/matches.imported.json --validate-only
+          node scripts/update-data.mjs --source=automation/matches.imported.json --skip-unchanged
 
       - name: Smoke test generated data
         run: node scripts/smoke-test-data.mjs
