@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-16 02:19",
+    "lastUpdated": "2026-06-17 02:22",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,94 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "6月15日",
-      "isoDate": "2026-06-15",
-      "summary": "昨天 3 场预测中，已复盘 2 场，命中 1 场，还有 1 场待复盘。",
-      "predictions": [
-        {
-          "id": "pred-wik-11",
-          "matchId": "match-wik-11",
-          "time": "07:00",
-          "match": "科特迪瓦 vs 厄瓜多尔",
-          "phase": "小组赛 E 组",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low",
-          "reason": "两队风格迥异，走势不确定性高",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-12",
-          "matchId": "match-wik-12",
-          "time": "10:00",
-          "match": "瑞典 vs 突尼斯",
-          "phase": "小组赛 F 组",
-          "pick": "瑞典胜",
-          "score": "1-0",
-          "confidence": "低",
-          "bucket": "low",
-          "reason": "瑞典身体对抗占优，但进攻效率不确定",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-14",
-          "matchId": "match-wik-14",
-          "time": "03:00",
-          "match": "比利时 vs 埃及",
-          "phase": "小组赛 G 组",
-          "pick": "比利时胜",
-          "score": "2-1",
-          "confidence": "中",
-          "bucket": "mid late",
-          "reason": "比利时个人能力占优，但防线偶有失误",
-          "source": "override"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-11",
-          "predictionId": "pred-wik-11",
-          "matchId": "match-wik-11",
-          "match": "科特迪瓦 vs 厄瓜多尔",
-          "predict": "平局 1-1",
-          "actual": "1-0",
-          "actualScore": "1-0",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-12",
-          "predictionId": "pred-wik-12",
-          "matchId": "match-wik-12",
-          "match": "瑞典 vs 突尼斯",
-          "predict": "瑞典胜 1-0",
-          "actual": "5-1",
-          "actualScore": "5-1",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        },
-        {
-          "id": "review-wik-14",
-          "predictionId": "pred-wik-14",
-          "matchId": "match-wik-14",
-          "match": "比利时 vs 埃及",
-          "predict": "比利时胜 2-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
-          "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "6月16日",
       "isoDate": "2026-06-16",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 4 场预测中，已复盘 3 场，命中 0 场，还有 1 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-15",
@@ -167,11 +82,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-15",
           "match": "沙特 vs 乌拉圭",
           "predict": "乌拉圭胜 0-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-1",
+          "actualScore": "1-1",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-16",
@@ -179,11 +94,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-16",
           "match": "伊朗 vs 新西兰",
           "predict": "伊朗胜 1-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "2-2",
+          "actualScore": "2-2",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-13",
@@ -191,11 +106,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-13",
           "match": "西班牙 vs 佛得角",
           "predict": "西班牙胜 3-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "0-0",
+          "actualScore": "0-0",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-17",
@@ -211,11 +126,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "6月17日",
       "isoDate": "2026-06-17",
-      "summary": "明天有 5 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-18",
@@ -281,6 +196,115 @@ window.WORLD_CUP_DATA = {
           "bucket": "mid late",
           "reason": "英格兰青春风暴，克罗地亚经验但老化",
           "source": "override"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-18",
+          "predictionId": "pred-wik-18",
+          "matchId": "match-wik-18",
+          "match": "伊拉克 vs 挪威",
+          "predict": "挪威胜 0-2",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-19",
+          "predictionId": "pred-wik-19",
+          "matchId": "match-wik-19",
+          "match": "阿根廷 vs 阿尔及利亚",
+          "predict": "阿根廷胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-20",
+          "predictionId": "pred-wik-20",
+          "matchId": "match-wik-20",
+          "match": "奥地利 vs 约旦",
+          "predict": "奥地利胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-21",
+          "predictionId": "pred-wik-21",
+          "matchId": "match-wik-21",
+          "match": "葡萄牙 vs 刚果金",
+          "predict": "葡萄牙胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-22",
+          "predictionId": "pred-wik-22",
+          "matchId": "match-wik-22",
+          "match": "英格兰 vs 克罗地亚",
+          "predict": "英格兰胜 2-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "6月18日",
+      "isoDate": "2026-06-18",
+      "summary": "明天有 3 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-23",
+          "matchId": "match-wik-23",
+          "time": "07:00",
+          "match": "加纳 vs 巴拿马",
+          "phase": "小组赛 L 组",
+          "pick": "加纳胜",
+          "score": "2-0",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "加纳非洲劲旅，身体优势明显",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-24",
+          "matchId": "match-wik-24",
+          "time": "10:00",
+          "match": "乌兹别克斯坦 vs 哥伦比亚",
+          "phase": "小组赛 K 组",
+          "pick": "哥伦比亚胜",
+          "score": "0-2",
+          "confidence": "高",
+          "bucket": "high",
+          "reason": "哥伦比亚南美传统强队，技术占优",
+          "source": "override"
+        },
+        {
+          "id": "pred-wik-26",
+          "matchId": "match-wik-26",
+          "time": "03:00",
+          "match": "瑞士 vs 波黑",
+          "phase": "小组赛 B 组",
+          "pick": "瑞士胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high late",
+          "reason": "瑞士综合评分优势明显，攻防稳定性更好",
+          "source": "auto"
         }
       ],
       "reviews": []
@@ -453,8 +477,8 @@ window.WORLD_CUP_DATA = {
       "away": "埃及",
       "match": "比利时 vs 埃及",
       "kick": "03:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-1"
     },
     {
       "id": "match-wik-15",
@@ -466,8 +490,8 @@ window.WORLD_CUP_DATA = {
       "away": "乌拉圭",
       "match": "沙特 vs 乌拉圭",
       "kick": "06:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-1"
     },
     {
       "id": "match-wik-16",
@@ -479,8 +503,8 @@ window.WORLD_CUP_DATA = {
       "away": "新西兰",
       "match": "伊朗 vs 新西兰",
       "kick": "09:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "2-2"
     },
     {
       "id": "match-wik-13",
@@ -492,8 +516,8 @@ window.WORLD_CUP_DATA = {
       "away": "佛得角",
       "match": "西班牙 vs 佛得角",
       "kick": "24:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-0"
     },
     {
       "id": "match-wik-17",
