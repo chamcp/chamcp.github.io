@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-17 21:03",
+    "lastUpdated": "2026-06-18 05:25",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,119 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "6月16日",
-      "isoDate": "2026-06-16",
-      "summary": "昨天 4 场预测中，已复盘 4 场，命中 1 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-15",
-          "matchId": "match-wik-15",
-          "time": "06:00",
-          "match": "沙特 vs 乌拉圭",
-          "phase": "小组赛 H 组",
-          "pick": "乌拉圭胜",
-          "score": "0-2",
-          "confidence": "高",
-          "bucket": "high",
-          "reason": "乌拉圭大赛经验和整体实力明显占优",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-16",
-          "matchId": "match-wik-16",
-          "time": "09:00",
-          "match": "伊朗 vs 新西兰",
-          "phase": "小组赛 G 组",
-          "pick": "伊朗胜",
-          "score": "1-0",
-          "confidence": "中",
-          "bucket": "mid",
-          "reason": "伊朗亚洲顶级防守，新西兰进攻手段有限",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-13",
-          "matchId": "match-wik-13",
-          "time": "24:00",
-          "match": "西班牙 vs 佛得角",
-          "phase": "小组赛 H 组",
-          "pick": "西班牙胜",
-          "score": "3-0",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "西班牙技术碾压，佛得角很难应对",
-          "source": "override"
-        },
-        {
-          "id": "pred-wik-17",
-          "matchId": "match-wik-17",
-          "time": "03:00",
-          "match": "法国 vs 塞内加尔",
-          "phase": "小组赛 I 组",
-          "pick": "法国胜",
-          "score": "2-0",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "法国阵容深度和大赛经验均占优",
-          "source": "override"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-15",
-          "predictionId": "pred-wik-15",
-          "matchId": "match-wik-15",
-          "match": "沙特 vs 乌拉圭",
-          "predict": "乌拉圭胜 0-2",
-          "actual": "1-1",
-          "actualScore": "1-1",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-16",
-          "predictionId": "pred-wik-16",
-          "matchId": "match-wik-16",
-          "match": "伊朗 vs 新西兰",
-          "predict": "伊朗胜 1-0",
-          "actual": "2-2",
-          "actualScore": "2-2",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-13",
-          "predictionId": "pred-wik-13",
-          "matchId": "match-wik-13",
-          "match": "西班牙 vs 佛得角",
-          "predict": "西班牙胜 3-0",
-          "actual": "0-0",
-          "actualScore": "0-0",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-17",
-          "predictionId": "pred-wik-17",
-          "matchId": "match-wik-17",
-          "match": "法国 vs 塞内加尔",
-          "predict": "法国胜 2-0",
-          "actual": "3-1",
-          "actualScore": "3-1",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "6月17日",
       "isoDate": "2026-06-17",
-      "summary": "今天 5 场预测中，已复盘 3 场，命中 3 场，还有 2 场待复盘。",
+      "summary": "昨天 5 场预测中，已复盘 3 场，命中 3 场，还有 2 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-18",
@@ -261,11 +151,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "6月18日",
       "isoDate": "2026-06-18",
-      "summary": "明天有 3 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-23",
@@ -304,6 +194,104 @@ window.WORLD_CUP_DATA = {
           "confidence": "高",
           "bucket": "high late",
           "reason": "瑞士综合评分优势明显，攻防稳定性更好",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-23",
+          "predictionId": "pred-wik-23",
+          "matchId": "match-wik-23",
+          "match": "加纳 vs 巴拿马",
+          "predict": "加纳胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-24",
+          "predictionId": "pred-wik-24",
+          "matchId": "match-wik-24",
+          "match": "乌兹别克斯坦 vs 哥伦比亚",
+          "predict": "哥伦比亚胜 0-2",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-26",
+          "predictionId": "pred-wik-26",
+          "matchId": "match-wik-26",
+          "match": "瑞士 vs 波黑",
+          "predict": "瑞士胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "6月19日",
+      "isoDate": "2026-06-19",
+      "summary": "明天有 4 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-27",
+          "matchId": "match-wik-27",
+          "time": "06:00",
+          "match": "加拿大 vs 卡塔尔",
+          "phase": "小组赛 B 组",
+          "pick": "卡塔尔胜",
+          "score": "1-2",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "卡塔尔整体实力略占优，但比赛可能接近",
+          "source": "auto"
+        },
+        {
+          "id": "pred-wik-28",
+          "matchId": "match-wik-28",
+          "time": "09:00",
+          "match": "墨西哥 vs 韩国",
+          "phase": "小组赛 A 组",
+          "pick": "墨西哥胜",
+          "score": "2-1",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "墨西哥整体实力略占优，但比赛可能接近",
+          "source": "auto"
+        },
+        {
+          "id": "pred-wik-25",
+          "matchId": "match-wik-25",
+          "time": "24:00",
+          "match": "捷克 vs 南非",
+          "phase": "小组赛 A 组",
+          "pick": "捷克胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high late",
+          "reason": "捷克综合评分优势明显，攻防稳定性更好",
+          "source": "auto"
+        },
+        {
+          "id": "pred-wik-29",
+          "matchId": "match-wik-29",
+          "time": "03:00",
+          "match": "美国 vs 澳大利亚",
+          "phase": "小组赛 D 组",
+          "pick": "美国胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high late",
+          "reason": "美国综合评分优势明显，攻防稳定性更好",
           "source": "auto"
         }
       ],
