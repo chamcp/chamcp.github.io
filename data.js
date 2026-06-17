@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-17 02:22",
+    "lastUpdated": "2026-06-17 21:03",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "6月16日",
       "isoDate": "2026-06-16",
-      "summary": "昨天 4 场预测中，已复盘 3 场，命中 0 场，还有 1 场待复盘。",
+      "summary": "昨天 4 场预测中，已复盘 4 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-15",
@@ -118,11 +118,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-17",
           "match": "法国 vs 塞内加尔",
           "predict": "法国胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "3-1",
+          "actualScore": "3-1",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         }
       ]
     },
@@ -130,7 +130,7 @@ window.WORLD_CUP_DATA = {
       "label": "今天",
       "date": "6月17日",
       "isoDate": "2026-06-17",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "今天 5 场预测中，已复盘 3 场，命中 3 场，还有 2 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-18",
@@ -205,11 +205,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-18",
           "match": "伊拉克 vs 挪威",
           "predict": "挪威胜 0-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-4",
+          "actualScore": "1-4",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-19",
@@ -217,11 +217,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-19",
           "match": "阿根廷 vs 阿尔及利亚",
           "predict": "阿根廷胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "3-0",
+          "actualScore": "3-0",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-20",
@@ -229,11 +229,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-20",
           "match": "奥地利 vs 约旦",
           "predict": "奥地利胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "3-1",
+          "actualScore": "3-1",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-21",
@@ -529,8 +529,8 @@ window.WORLD_CUP_DATA = {
       "away": "塞内加尔",
       "match": "法国 vs 塞内加尔",
       "kick": "03:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-1"
     },
     {
       "id": "match-wik-18",
@@ -542,8 +542,8 @@ window.WORLD_CUP_DATA = {
       "away": "挪威",
       "match": "伊拉克 vs 挪威",
       "kick": "06:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-4"
     },
     {
       "id": "match-wik-19",
@@ -555,8 +555,8 @@ window.WORLD_CUP_DATA = {
       "away": "阿尔及利亚",
       "match": "阿根廷 vs 阿尔及利亚",
       "kick": "09:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-0"
     },
     {
       "id": "match-wik-20",
@@ -568,8 +568,8 @@ window.WORLD_CUP_DATA = {
       "away": "约旦",
       "match": "奥地利 vs 约旦",
       "kick": "12:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-1"
     },
     {
       "id": "match-wik-21",
