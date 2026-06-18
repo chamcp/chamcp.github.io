@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-18 05:25",
+    "lastUpdated": "2026-06-18 19:58",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "6月17日",
       "isoDate": "2026-06-17",
-      "summary": "昨天 5 场预测中，已复盘 3 场，命中 3 场，还有 2 场待复盘。",
+      "summary": "昨天 5 场预测中，已复盘 5 场，命中 4 场。",
       "predictions": [
         {
           "id": "pred-wik-18",
@@ -131,11 +131,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-21",
           "match": "葡萄牙 vs 刚果金",
           "predict": "葡萄牙胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-1",
+          "actualScore": "1-1",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-22",
@@ -143,11 +143,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-22",
           "match": "英格兰 vs 克罗地亚",
           "predict": "英格兰胜 2-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "4-2",
+          "actualScore": "4-2",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         }
       ]
     },
@@ -155,7 +155,7 @@ window.WORLD_CUP_DATA = {
       "label": "今天",
       "date": "6月18日",
       "isoDate": "2026-06-18",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "今天 3 场预测中，已复盘 2 场，命中 2 场，还有 1 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-23",
@@ -204,11 +204,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-23",
           "match": "加纳 vs 巴拿马",
           "predict": "加纳胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-0",
+          "actualScore": "1-0",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-24",
@@ -216,11 +216,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-24",
           "match": "乌兹别克斯坦 vs 哥伦比亚",
           "predict": "哥伦比亚胜 0-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-3",
+          "actualScore": "1-3",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-26",
@@ -569,8 +569,8 @@ window.WORLD_CUP_DATA = {
       "away": "刚果金",
       "match": "葡萄牙 vs 刚果金",
       "kick": "01:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-1"
     },
     {
       "id": "match-wik-22",
@@ -582,8 +582,8 @@ window.WORLD_CUP_DATA = {
       "away": "克罗地亚",
       "match": "英格兰 vs 克罗地亚",
       "kick": "04:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "4-2"
     },
     {
       "id": "match-wik-23",
@@ -595,8 +595,8 @@ window.WORLD_CUP_DATA = {
       "away": "巴拿马",
       "match": "加纳 vs 巴拿马",
       "kick": "07:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-0"
     },
     {
       "id": "match-wik-24",
@@ -608,8 +608,8 @@ window.WORLD_CUP_DATA = {
       "away": "哥伦比亚",
       "match": "乌兹别克斯坦 vs 哥伦比亚",
       "kick": "10:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-3"
     },
     {
       "id": "match-wik-26",
