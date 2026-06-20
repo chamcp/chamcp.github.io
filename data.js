@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-20 03:16",
+    "lastUpdated": "2026-06-20 18:15",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "6月19日",
       "isoDate": "2026-06-19",
-      "summary": "昨天 4 场预测中，已复盘 3 场，命中 1 场，还有 1 场待复盘。",
+      "summary": "昨天 4 场预测中，已复盘 4 场，命中 2 场。",
       "predictions": [
         {
           "id": "pred-wik-27",
@@ -118,11 +118,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-29",
           "match": "美国 vs 澳大利亚",
           "predict": "美国胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
-          "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "actual": "2-0",
+          "actualScore": "2-0",
+          "status": "hit",
+          "exact": true,
+          "note": "方向和比分均精准"
         }
       ]
     },
@@ -130,7 +130,7 @@ window.WORLD_CUP_DATA = {
       "label": "今天",
       "date": "6月20日",
       "isoDate": "2026-06-20",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "今天 5 场预测中，已复盘 3 场，命中 2 场，还有 2 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-30",
@@ -205,11 +205,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-30",
           "match": "苏格兰 vs 摩洛哥",
           "predict": "摩洛哥胜 0-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "0-1",
+          "actualScore": "0-1",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-31",
@@ -217,11 +217,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-31",
           "match": "巴西 vs 海地",
           "predict": "巴西胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "3-0",
+          "actualScore": "3-0",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-32",
@@ -229,11 +229,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-32",
           "match": "土耳其 vs 巴拉圭",
           "predict": "平局 1-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "0-1",
+          "actualScore": "0-1",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-33",
@@ -685,8 +685,8 @@ window.WORLD_CUP_DATA = {
       "away": "澳大利亚",
       "match": "美国 vs 澳大利亚",
       "kick": "03:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "2-0"
     },
     {
       "id": "match-wik-30",
@@ -698,8 +698,8 @@ window.WORLD_CUP_DATA = {
       "away": "摩洛哥",
       "match": "苏格兰 vs 摩洛哥",
       "kick": "06:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-1"
     },
     {
       "id": "match-wik-31",
@@ -711,8 +711,8 @@ window.WORLD_CUP_DATA = {
       "away": "海地",
       "match": "巴西 vs 海地",
       "kick": "08:30",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-0"
     },
     {
       "id": "match-wik-32",
@@ -724,8 +724,8 @@ window.WORLD_CUP_DATA = {
       "away": "巴拉圭",
       "match": "土耳其 vs 巴拉圭",
       "kick": "11:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-1"
     },
     {
       "id": "match-wik-33",
