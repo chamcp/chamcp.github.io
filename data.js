@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-06-21 00:03",
+    "lastUpdated": "2026-06-21 18:47",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "6月20日",
       "isoDate": "2026-06-20",
-      "summary": "昨天 5 场预测中，已复盘 3 场，命中 2 场，还有 2 场待复盘。",
+      "summary": "昨天 5 场预测中，已复盘 5 场，命中 4 场。",
       "predictions": [
         {
           "id": "pred-wik-30",
@@ -131,11 +131,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-33",
           "match": "荷兰 vs 瑞典",
           "predict": "荷兰胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "5-1",
+          "actualScore": "5-1",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-34",
@@ -143,11 +143,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-34",
           "match": "德国 vs 科特迪瓦",
           "predict": "德国胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "2-1",
+          "actualScore": "2-1",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         }
       ]
     },
@@ -155,7 +155,7 @@ window.WORLD_CUP_DATA = {
       "label": "今天",
       "date": "6月21日",
       "isoDate": "2026-06-21",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "今天 3 场预测中，已复盘 2 场，命中 1 场，还有 1 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-35",
@@ -204,11 +204,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-35",
           "match": "厄瓜多尔 vs 库拉索",
           "predict": "厄瓜多尔胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "0-0",
+          "actualScore": "0-0",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-36",
@@ -216,11 +216,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-36",
           "match": "突尼斯 vs 日本",
           "predict": "日本胜 0-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "0-4",
+          "actualScore": "0-4",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         },
         {
           "id": "review-wik-38",
@@ -738,8 +738,8 @@ window.WORLD_CUP_DATA = {
       "away": "瑞典",
       "match": "荷兰 vs 瑞典",
       "kick": "01:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "5-1"
     },
     {
       "id": "match-wik-34",
@@ -751,8 +751,8 @@ window.WORLD_CUP_DATA = {
       "away": "科特迪瓦",
       "match": "德国 vs 科特迪瓦",
       "kick": "04:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "2-1"
     },
     {
       "id": "match-wik-35",
@@ -764,8 +764,8 @@ window.WORLD_CUP_DATA = {
       "away": "库拉索",
       "match": "厄瓜多尔 vs 库拉索",
       "kick": "08:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-0"
     },
     {
       "id": "match-wik-36",
@@ -777,8 +777,8 @@ window.WORLD_CUP_DATA = {
       "away": "日本",
       "match": "突尼斯 vs 日本",
       "kick": "12:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-4"
     },
     {
       "id": "match-wik-38",
