@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-02 02:21",
+    "lastUpdated": "2026-07-03 01:02",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,24 +18,24 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月1日",
-      "isoDate": "2026-07-01",
+      "date": "7月2日",
+      "isoDate": "2026-07-02",
       "summary": "昨天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
     "today": {
       "label": "今天",
-      "date": "7月2日",
-      "isoDate": "2026-07-02",
+      "date": "7月3日",
+      "isoDate": "2026-07-03",
       "summary": "今天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
     "tomorrow": {
       "label": "明天",
-      "date": "7月3日",
-      "isoDate": "2026-07-03",
+      "date": "7月4日",
+      "isoDate": "2026-07-04",
       "summary": "明天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
