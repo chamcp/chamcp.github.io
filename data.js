@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-06 04:01",
+    "lastUpdated": "2026-07-07 05:04",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,26 +18,144 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月5日",
-      "isoDate": "2026-07-05",
-      "summary": "昨天暂无已录入比赛。",
-      "predictions": [],
-      "reviews": []
+      "date": "7月6日",
+      "isoDate": "2026-07-06",
+      "summary": "昨天 2 场预测中，已复盘 2 场，命中 2 场。",
+      "predictions": [
+        {
+          "id": "pred-wik-92",
+          "matchId": "match-wik-92",
+          "time": "09:00",
+          "match": "墨西哥 vs 英格兰",
+          "phase": "淘汰赛",
+          "pick": "英格兰胜",
+          "score": "1-2",
+          "confidence": "中",
+          "bucket": "mid",
+          "reason": "英格兰整体实力略占优，但比赛可能接近",
+          "source": "auto"
+        },
+        {
+          "id": "pred-wik-93",
+          "matchId": "match-wik-93",
+          "time": "03:00",
+          "match": "葡萄牙 vs 西班牙",
+          "phase": "淘汰赛",
+          "pick": "平局",
+          "score": "1-1",
+          "confidence": "低",
+          "bucket": "low late",
+          "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-92",
+          "predictionId": "pred-wik-92",
+          "matchId": "match-wik-92",
+          "match": "墨西哥 vs 英格兰",
+          "predict": "英格兰胜 1-2",
+          "actual": "2-3",
+          "actualScore": "2-3",
+          "status": "hit",
+          "exact": false,
+          "note": "方向命中，比分仍有偏差"
+        },
+        {
+          "id": "review-wik-93",
+          "predictionId": "pred-wik-93",
+          "matchId": "match-wik-93",
+          "match": "葡萄牙 vs 西班牙",
+          "predict": "平局 1-1",
+          "actual": "0-0",
+          "actualScore": "0-0",
+          "status": "hit",
+          "exact": false,
+          "note": "方向命中，比分仍有偏差"
+        }
+      ]
     },
     "today": {
       "label": "今天",
-      "date": "7月6日",
-      "isoDate": "2026-07-06",
-      "summary": "今天暂无已录入比赛。",
-      "predictions": [],
-      "reviews": []
+      "date": "7月7日",
+      "isoDate": "2026-07-07",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-94",
+          "matchId": "match-wik-94",
+          "time": "08:00",
+          "match": "美国 vs 比利时",
+          "phase": "淘汰赛",
+          "pick": "平局",
+          "score": "1-1",
+          "confidence": "低",
+          "bucket": "low",
+          "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        },
+        {
+          "id": "pred-wik-96",
+          "matchId": "match-wik-96",
+          "time": "04:00",
+          "match": "瑞士 vs 哥伦比亚",
+          "phase": "淘汰赛",
+          "pick": "平局",
+          "score": "1-1",
+          "confidence": "低",
+          "bucket": "low late",
+          "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-94",
+          "predictionId": "pred-wik-94",
+          "matchId": "match-wik-94",
+          "match": "美国 vs 比利时",
+          "predict": "平局 1-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        },
+        {
+          "id": "review-wik-96",
+          "predictionId": "pred-wik-96",
+          "matchId": "match-wik-96",
+          "match": "瑞士 vs 哥伦比亚",
+          "predict": "平局 1-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
     },
     "tomorrow": {
       "label": "明天",
-      "date": "7月7日",
-      "isoDate": "2026-07-07",
-      "summary": "明天暂无已录入比赛。",
-      "predictions": [],
+      "date": "7月8日",
+      "isoDate": "2026-07-08",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-95",
+          "matchId": "match-wik-95",
+          "time": "24:00",
+          "match": "阿根廷 vs 埃及",
+          "phase": "淘汰赛",
+          "pick": "阿根廷胜",
+          "score": "2-0",
+          "confidence": "高",
+          "bucket": "high late",
+          "reason": "阿根廷综合评分优势明显，攻防稳定性更好",
+          "source": "auto"
+        }
+      ],
       "reviews": []
     }
   },
@@ -910,8 +1028,8 @@ window.WORLD_CUP_DATA = {
       "away": "英格兰",
       "match": "巴拿马 vs 英格兰",
       "kick": "05:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-2"
     },
     {
       "id": "match-wik-68",
@@ -923,8 +1041,8 @@ window.WORLD_CUP_DATA = {
       "away": "加纳",
       "match": "克罗地亚 vs 加纳",
       "kick": "05:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "2-1"
     },
     {
       "id": "match-wik-69",
@@ -936,8 +1054,8 @@ window.WORLD_CUP_DATA = {
       "away": "葡萄牙",
       "match": "哥伦比亚 vs 葡萄牙",
       "kick": "07:30",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "0-0"
     },
     {
       "id": "match-wik-70",
@@ -949,8 +1067,8 @@ window.WORLD_CUP_DATA = {
       "away": "乌兹别克斯坦",
       "match": "刚果金 vs 乌兹别克斯坦",
       "kick": "07:30",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-1"
     },
     {
       "id": "match-wik-71",
@@ -962,8 +1080,8 @@ window.WORLD_CUP_DATA = {
       "away": "阿根廷",
       "match": "约旦 vs 阿根廷",
       "kick": "10:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-3"
     },
     {
       "id": "match-wik-72",
@@ -975,6 +1093,344 @@ window.WORLD_CUP_DATA = {
       "away": "奥地利",
       "match": "阿尔及利亚 vs 奥地利",
       "kick": "10:00",
+      "state": "已完赛",
+      "actualScore": "3-3"
+    },
+    {
+      "id": "match-wik-73",
+      "isoDate": "2026-06-29",
+      "coverageDate": "2026-06-28",
+      "date": "6月29日",
+      "stage": "淘汰赛",
+      "home": "南非",
+      "away": "加拿大",
+      "match": "南非 vs 加拿大",
+      "kick": "03:00",
+      "state": "已完赛",
+      "actualScore": "0-1"
+    },
+    {
+      "id": "match-wik-74",
+      "isoDate": "2026-06-30",
+      "coverageDate": "2026-06-29",
+      "date": "6月30日",
+      "stage": "淘汰赛",
+      "home": "巴西",
+      "away": "日本",
+      "match": "巴西 vs 日本",
+      "kick": "01:00",
+      "state": "已完赛",
+      "actualScore": "2-1"
+    },
+    {
+      "id": "match-wik-75",
+      "isoDate": "2026-06-30",
+      "coverageDate": "2026-06-29",
+      "date": "6月30日",
+      "stage": "淘汰赛",
+      "home": "德国",
+      "away": "巴拉圭",
+      "match": "德国 vs 巴拉圭",
+      "kick": "04:30",
+      "state": "已完赛",
+      "actualScore": "4-5"
+    },
+    {
+      "id": "match-wik-76",
+      "isoDate": "2026-06-30",
+      "coverageDate": "2026-06-30",
+      "date": "6月30日",
+      "stage": "淘汰赛",
+      "home": "荷兰",
+      "away": "摩洛哥",
+      "match": "荷兰 vs 摩洛哥",
+      "kick": "09:00",
+      "state": "已完赛",
+      "actualScore": "3-4"
+    },
+    {
+      "id": "match-wik-77",
+      "isoDate": "2026-07-01",
+      "coverageDate": "2026-06-30",
+      "date": "7月1日",
+      "stage": "淘汰赛",
+      "home": "科特迪瓦",
+      "away": "挪威",
+      "match": "科特迪瓦 vs 挪威",
+      "kick": "01:00",
+      "state": "已完赛",
+      "actualScore": "1-2"
+    },
+    {
+      "id": "match-wik-78",
+      "isoDate": "2026-07-01",
+      "coverageDate": "2026-06-30",
+      "date": "7月1日",
+      "stage": "淘汰赛",
+      "home": "法国",
+      "away": "瑞典",
+      "match": "法国 vs 瑞典",
+      "kick": "05:00",
+      "state": "已完赛",
+      "actualScore": "3-0"
+    },
+    {
+      "id": "match-wik-79",
+      "isoDate": "2026-07-01",
+      "coverageDate": "2026-07-01",
+      "date": "7月1日",
+      "stage": "淘汰赛",
+      "home": "墨西哥",
+      "away": "厄瓜多尔",
+      "match": "墨西哥 vs 厄瓜多尔",
+      "kick": "10:00",
+      "state": "已完赛",
+      "actualScore": "2-0"
+    },
+    {
+      "id": "match-wik-81",
+      "isoDate": "2026-07-02",
+      "coverageDate": "2026-07-01",
+      "date": "7月2日",
+      "stage": "淘汰赛",
+      "home": "比利时",
+      "away": "塞内加尔",
+      "match": "比利时 vs 塞内加尔",
+      "kick": "04:00",
+      "state": "已完赛",
+      "actualScore": "3-2"
+    },
+    {
+      "id": "match-wik-82",
+      "isoDate": "2026-07-02",
+      "coverageDate": "2026-07-02",
+      "date": "7月2日",
+      "stage": "淘汰赛",
+      "home": "美国",
+      "away": "波黑",
+      "match": "美国 vs 波黑",
+      "kick": "08:00",
+      "state": "已完赛",
+      "actualScore": "2-0"
+    },
+    {
+      "id": "match-wik-80",
+      "isoDate": "2026-07-02",
+      "coverageDate": "2026-07-02",
+      "date": "7月2日",
+      "stage": "淘汰赛",
+      "home": "英格兰",
+      "away": "刚果金",
+      "match": "英格兰 vs 刚果金",
+      "kick": "24:00",
+      "state": "已完赛",
+      "actualScore": "2-1"
+    },
+    {
+      "id": "match-wik-83",
+      "isoDate": "2026-07-03",
+      "coverageDate": "2026-07-02",
+      "date": "7月3日",
+      "stage": "淘汰赛",
+      "home": "西班牙",
+      "away": "奥地利",
+      "match": "西班牙 vs 奥地利",
+      "kick": "03:00",
+      "state": "已完赛",
+      "actualScore": "3-0"
+    },
+    {
+      "id": "match-wik-84",
+      "isoDate": "2026-07-03",
+      "coverageDate": "2026-07-03",
+      "date": "7月3日",
+      "stage": "淘汰赛",
+      "home": "葡萄牙",
+      "away": "克罗地亚",
+      "match": "葡萄牙 vs 克罗地亚",
+      "kick": "07:00",
+      "state": "已完赛",
+      "actualScore": "2-1"
+    },
+    {
+      "id": "match-wik-85",
+      "isoDate": "2026-07-03",
+      "coverageDate": "2026-07-03",
+      "date": "7月3日",
+      "stage": "淘汰赛",
+      "home": "瑞士",
+      "away": "阿尔及利亚",
+      "match": "瑞士 vs 阿尔及利亚",
+      "kick": "11:00",
+      "state": "已完赛",
+      "actualScore": "2-0"
+    },
+    {
+      "id": "match-wik-86",
+      "isoDate": "2026-07-04",
+      "coverageDate": "2026-07-03",
+      "date": "7月4日",
+      "stage": "淘汰赛",
+      "home": "澳大利亚",
+      "away": "埃及",
+      "match": "澳大利亚 vs 埃及",
+      "kick": "02:00",
+      "state": "已完赛",
+      "actualScore": "3-5"
+    },
+    {
+      "id": "match-wik-87",
+      "isoDate": "2026-07-04",
+      "coverageDate": "2026-07-04",
+      "date": "7月4日",
+      "stage": "淘汰赛",
+      "home": "阿根廷",
+      "away": "佛得角",
+      "match": "阿根廷 vs 佛得角",
+      "kick": "06:00",
+      "state": "已完赛",
+      "actualScore": "3-2"
+    },
+    {
+      "id": "match-wik-88",
+      "isoDate": "2026-07-04",
+      "coverageDate": "2026-07-04",
+      "date": "7月4日",
+      "stage": "淘汰赛",
+      "home": "哥伦比亚",
+      "away": "加纳",
+      "match": "哥伦比亚 vs 加纳",
+      "kick": "09:30",
+      "state": "已完赛",
+      "actualScore": "1-0"
+    },
+    {
+      "id": "match-wik-89",
+      "isoDate": "2026-07-05",
+      "coverageDate": "2026-07-04",
+      "date": "7月5日",
+      "stage": "淘汰赛",
+      "home": "加拿大",
+      "away": "摩洛哥",
+      "match": "加拿大 vs 摩洛哥",
+      "kick": "01:00",
+      "state": "已完赛",
+      "actualScore": "0-3"
+    },
+    {
+      "id": "match-wik-90",
+      "isoDate": "2026-07-05",
+      "coverageDate": "2026-07-04",
+      "date": "7月5日",
+      "stage": "淘汰赛",
+      "home": "巴拉圭",
+      "away": "法国",
+      "match": "巴拉圭 vs 法国",
+      "kick": "05:00",
+      "state": "已完赛",
+      "actualScore": "0-1"
+    },
+    {
+      "id": "match-wik-91",
+      "isoDate": "2026-07-06",
+      "coverageDate": "2026-07-05",
+      "date": "7月6日",
+      "stage": "淘汰赛",
+      "home": "巴西",
+      "away": "挪威",
+      "match": "巴西 vs 挪威",
+      "kick": "04:00",
+      "state": "已完赛",
+      "actualScore": "1-2"
+    },
+    {
+      "id": "match-wik-92",
+      "isoDate": "2026-07-06",
+      "coverageDate": "2026-07-06",
+      "date": "7月6日",
+      "stage": "淘汰赛",
+      "home": "墨西哥",
+      "away": "英格兰",
+      "match": "墨西哥 vs 英格兰",
+      "kick": "09:00",
+      "state": "已完赛",
+      "actualScore": "2-3"
+    },
+    {
+      "id": "match-wik-93",
+      "isoDate": "2026-07-07",
+      "coverageDate": "2026-07-06",
+      "date": "7月7日",
+      "stage": "淘汰赛",
+      "home": "葡萄牙",
+      "away": "西班牙",
+      "match": "葡萄牙 vs 西班牙",
+      "kick": "03:00",
+      "state": "已完赛",
+      "actualScore": "0-0"
+    },
+    {
+      "id": "match-wik-94",
+      "isoDate": "2026-07-07",
+      "coverageDate": "2026-07-07",
+      "date": "7月7日",
+      "stage": "淘汰赛",
+      "home": "美国",
+      "away": "比利时",
+      "match": "美国 vs 比利时",
+      "kick": "08:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-96",
+      "isoDate": "2026-07-08",
+      "coverageDate": "2026-07-07",
+      "date": "7月8日",
+      "stage": "淘汰赛",
+      "home": "瑞士",
+      "away": "哥伦比亚",
+      "match": "瑞士 vs 哥伦比亚",
+      "kick": "04:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-95",
+      "isoDate": "2026-07-08",
+      "coverageDate": "2026-07-08",
+      "date": "7月8日",
+      "stage": "淘汰赛",
+      "home": "阿根廷",
+      "away": "埃及",
+      "match": "阿根廷 vs 埃及",
+      "kick": "24:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-97",
+      "isoDate": "2026-07-10",
+      "coverageDate": "2026-07-09",
+      "date": "7月10日",
+      "stage": "淘汰赛",
+      "home": "法国",
+      "away": "摩洛哥",
+      "match": "法国 vs 摩洛哥",
+      "kick": "04:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-99",
+      "isoDate": "2026-07-12",
+      "coverageDate": "2026-07-11",
+      "date": "7月12日",
+      "stage": "淘汰赛",
+      "home": "挪威",
+      "away": "英格兰",
+      "match": "挪威 vs 英格兰",
+      "kick": "05:00",
       "state": "未开赛",
       "actualScore": null
     }
