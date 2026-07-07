@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-07 05:04",
+    "lastUpdated": "2026-07-08 02:32",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,69 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月6日",
-      "isoDate": "2026-07-06",
-      "summary": "昨天 2 场预测中，已复盘 2 场，命中 2 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-92",
-          "matchId": "match-wik-92",
-          "time": "09:00",
-          "match": "墨西哥 vs 英格兰",
-          "phase": "淘汰赛",
-          "pick": "英格兰胜",
-          "score": "1-2",
-          "confidence": "中",
-          "bucket": "mid",
-          "reason": "英格兰整体实力略占优，但比赛可能接近",
-          "source": "auto"
-        },
-        {
-          "id": "pred-wik-93",
-          "matchId": "match-wik-93",
-          "time": "03:00",
-          "match": "葡萄牙 vs 西班牙",
-          "phase": "淘汰赛",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low late",
-          "reason": "双方评分接近，胜负不确定性较高",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-92",
-          "predictionId": "pred-wik-92",
-          "matchId": "match-wik-92",
-          "match": "墨西哥 vs 英格兰",
-          "predict": "英格兰胜 1-2",
-          "actual": "2-3",
-          "actualScore": "2-3",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        },
-        {
-          "id": "review-wik-93",
-          "predictionId": "pred-wik-93",
-          "matchId": "match-wik-93",
-          "match": "葡萄牙 vs 西班牙",
-          "predict": "平局 1-1",
-          "actual": "0-0",
-          "actualScore": "0-0",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月7日",
       "isoDate": "2026-07-07",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 2 场预测中，已复盘 1 场，命中 0 场，还有 1 场待复盘。",
       "predictions": [
         {
           "id": "pred-wik-94",
@@ -116,11 +56,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-94",
           "match": "美国 vs 比利时",
           "predict": "平局 1-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-4",
+          "actualScore": "1-4",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         },
         {
           "id": "review-wik-96",
@@ -136,11 +76,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月8日",
       "isoDate": "2026-07-08",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-95",
@@ -153,6 +93,41 @@ window.WORLD_CUP_DATA = {
           "confidence": "高",
           "bucket": "high late",
           "reason": "阿根廷综合评分优势明显，攻防稳定性更好",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-95",
+          "predictionId": "pred-wik-95",
+          "matchId": "match-wik-95",
+          "match": "阿根廷 vs 埃及",
+          "predict": "阿根廷胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月9日",
+      "isoDate": "2026-07-09",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-97",
+          "matchId": "match-wik-97",
+          "time": "04:00",
+          "match": "法国 vs 摩洛哥",
+          "phase": "淘汰赛",
+          "pick": "法国胜",
+          "score": "2-1",
+          "confidence": "中",
+          "bucket": "mid late",
+          "reason": "法国整体实力略占优，但比赛可能接近",
           "source": "auto"
         }
       ],
@@ -1367,7 +1342,7 @@ window.WORLD_CUP_DATA = {
       "match": "葡萄牙 vs 西班牙",
       "kick": "03:00",
       "state": "已完赛",
-      "actualScore": "0-0"
+      "actualScore": "0-1"
     },
     {
       "id": "match-wik-94",
@@ -1379,8 +1354,8 @@ window.WORLD_CUP_DATA = {
       "away": "比利时",
       "match": "美国 vs 比利时",
       "kick": "08:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-4"
     },
     {
       "id": "match-wik-96",
@@ -1418,6 +1393,19 @@ window.WORLD_CUP_DATA = {
       "away": "摩洛哥",
       "match": "法国 vs 摩洛哥",
       "kick": "04:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-98",
+      "isoDate": "2026-07-11",
+      "coverageDate": "2026-07-10",
+      "date": "7月11日",
+      "stage": "淘汰赛",
+      "home": "西班牙",
+      "away": "比利时",
+      "match": "西班牙 vs 比利时",
+      "kick": "03:00",
       "state": "未开赛",
       "actualScore": null
     },
