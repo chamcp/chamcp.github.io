@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-08 02:32",
+    "lastUpdated": "2026-07-08 21:18",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "7月7日",
       "isoDate": "2026-07-07",
-      "summary": "昨天 2 场预测中，已复盘 1 场，命中 0 场，还有 1 场待复盘。",
+      "summary": "昨天 2 场预测中，已复盘 2 场，命中 0 场。",
       "predictions": [
         {
           "id": "pred-wik-94",
@@ -68,11 +68,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-96",
           "match": "瑞士 vs 哥伦比亚",
           "predict": "平局 1-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "4-3",
+          "actualScore": "4-3",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         }
       ]
     },
@@ -80,7 +80,7 @@ window.WORLD_CUP_DATA = {
       "label": "今天",
       "date": "7月8日",
       "isoDate": "2026-07-08",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "今天 1 场预测中，已复盘 1 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-95",
@@ -103,11 +103,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-95",
           "match": "阿根廷 vs 埃及",
           "predict": "阿根廷胜 2-0",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "3-2",
+          "actualScore": "3-2",
+          "status": "hit",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向命中，比分仍有偏差"
         }
       ]
     },
@@ -1367,8 +1367,8 @@ window.WORLD_CUP_DATA = {
       "away": "哥伦比亚",
       "match": "瑞士 vs 哥伦比亚",
       "kick": "04:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "4-3"
     },
     {
       "id": "match-wik-95",
@@ -1380,8 +1380,8 @@ window.WORLD_CUP_DATA = {
       "away": "埃及",
       "match": "阿根廷 vs 埃及",
       "kick": "24:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "3-2"
     },
     {
       "id": "match-wik-97",
@@ -1419,6 +1419,19 @@ window.WORLD_CUP_DATA = {
       "away": "英格兰",
       "match": "挪威 vs 英格兰",
       "kick": "05:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-100",
+      "isoDate": "2026-07-12",
+      "coverageDate": "2026-07-12",
+      "date": "7月12日",
+      "stage": "淘汰赛",
+      "home": "阿根廷",
+      "away": "瑞士",
+      "match": "阿根廷 vs 瑞士",
+      "kick": "09:00",
       "state": "未开赛",
       "actualScore": null
     }
