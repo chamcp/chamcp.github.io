@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-08 21:18",
+    "lastUpdated": "2026-07-09 02:53",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,69 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月7日",
-      "isoDate": "2026-07-07",
-      "summary": "昨天 2 场预测中，已复盘 2 场，命中 0 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-94",
-          "matchId": "match-wik-94",
-          "time": "08:00",
-          "match": "美国 vs 比利时",
-          "phase": "淘汰赛",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low",
-          "reason": "双方评分接近，胜负不确定性较高",
-          "source": "auto"
-        },
-        {
-          "id": "pred-wik-96",
-          "matchId": "match-wik-96",
-          "time": "04:00",
-          "match": "瑞士 vs 哥伦比亚",
-          "phase": "淘汰赛",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low late",
-          "reason": "双方评分接近，胜负不确定性较高",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-94",
-          "predictionId": "pred-wik-94",
-          "matchId": "match-wik-94",
-          "match": "美国 vs 比利时",
-          "predict": "平局 1-1",
-          "actual": "1-4",
-          "actualScore": "1-4",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        },
-        {
-          "id": "review-wik-96",
-          "predictionId": "pred-wik-96",
-          "matchId": "match-wik-96",
-          "match": "瑞士 vs 哥伦比亚",
-          "predict": "平局 1-1",
-          "actual": "4-3",
-          "actualScore": "4-3",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月8日",
       "isoDate": "2026-07-08",
-      "summary": "今天 1 场预测中，已复盘 1 场，命中 1 场。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-95",
@@ -111,11 +51,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月9日",
       "isoDate": "2026-07-09",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-97",
@@ -128,6 +68,41 @@ window.WORLD_CUP_DATA = {
           "confidence": "中",
           "bucket": "mid late",
           "reason": "法国整体实力略占优，但比赛可能接近",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-97",
+          "predictionId": "pred-wik-97",
+          "matchId": "match-wik-97",
+          "match": "法国 vs 摩洛哥",
+          "predict": "法国胜 2-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月10日",
+      "isoDate": "2026-07-10",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-98",
+          "matchId": "match-wik-98",
+          "time": "03:00",
+          "match": "西班牙 vs 比利时",
+          "phase": "淘汰赛",
+          "pick": "西班牙胜",
+          "score": "2-1",
+          "confidence": "中",
+          "bucket": "mid late",
+          "reason": "西班牙整体实力略占优，但比赛可能接近",
           "source": "auto"
         }
       ],
