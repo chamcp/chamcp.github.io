@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-11 01:29",
+    "lastUpdated": "2026-07-11 18:43",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "7月10日",
       "isoDate": "2026-07-10",
-      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-98",
@@ -43,11 +43,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-98",
           "match": "西班牙 vs 比利时",
           "predict": "西班牙胜 2-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
-          "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "actual": "2-1",
+          "actualScore": "2-1",
+          "status": "hit",
+          "exact": true,
+          "note": "方向和比分均精准"
         }
       ]
     },
@@ -1381,8 +1381,8 @@ window.WORLD_CUP_DATA = {
       "away": "比利时",
       "match": "西班牙 vs 比利时",
       "kick": "03:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "2-1"
     },
     {
       "id": "match-wik-99",
@@ -1407,6 +1407,19 @@ window.WORLD_CUP_DATA = {
       "away": "瑞士",
       "match": "阿根廷 vs 瑞士",
       "kick": "09:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-101",
+      "isoDate": "2026-07-15",
+      "coverageDate": "2026-07-14",
+      "date": "7月15日",
+      "stage": "淘汰赛",
+      "home": "法国",
+      "away": "西班牙",
+      "match": "法国 vs 西班牙",
+      "kick": "03:00",
       "state": "未开赛",
       "actualScore": null
     }
