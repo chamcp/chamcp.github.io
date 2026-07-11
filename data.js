@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-11 18:43",
+    "lastUpdated": "2026-07-12 02:07",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,44 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月10日",
-      "isoDate": "2026-07-10",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-98",
-          "matchId": "match-wik-98",
-          "time": "03:00",
-          "match": "西班牙 vs 比利时",
-          "phase": "淘汰赛",
-          "pick": "西班牙胜",
-          "score": "2-1",
-          "confidence": "中",
-          "bucket": "mid late",
-          "reason": "西班牙整体实力略占优，但比赛可能接近",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-98",
-          "predictionId": "pred-wik-98",
-          "matchId": "match-wik-98",
-          "match": "西班牙 vs 比利时",
-          "predict": "西班牙胜 2-1",
-          "actual": "2-1",
-          "actualScore": "2-1",
-          "status": "hit",
-          "exact": true,
-          "note": "方向和比分均精准"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月11日",
       "isoDate": "2026-07-11",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-99",
@@ -86,11 +51,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月12日",
       "isoDate": "2026-07-12",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-100",
@@ -106,6 +71,27 @@ window.WORLD_CUP_DATA = {
           "source": "auto"
         }
       ],
+      "reviews": [
+        {
+          "id": "review-wik-100",
+          "predictionId": "pred-wik-100",
+          "matchId": "match-wik-100",
+          "match": "阿根廷 vs 瑞士",
+          "predict": "阿根廷胜 2-0",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月13日",
+      "isoDate": "2026-07-13",
+      "summary": "明天暂无已录入比赛。",
+      "predictions": [],
       "reviews": []
     }
   },
