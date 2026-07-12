@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-12 19:43",
+    "lastUpdated": "2026-07-13 03:56",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,44 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月11日",
-      "isoDate": "2026-07-11",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-99",
-          "matchId": "match-wik-99",
-          "time": "05:00",
-          "match": "挪威 vs 英格兰",
-          "phase": "淘汰赛",
-          "pick": "英格兰胜",
-          "score": "0-2",
-          "confidence": "高",
-          "bucket": "high late",
-          "reason": "英格兰综合评分优势明显，客场仍有更高胜面",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-99",
-          "predictionId": "pred-wik-99",
-          "matchId": "match-wik-99",
-          "match": "挪威 vs 英格兰",
-          "predict": "英格兰胜 0-2",
-          "actual": "1-2",
-          "actualScore": "1-2",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月12日",
       "isoDate": "2026-07-12",
-      "summary": "今天 1 场预测中，已复盘 1 场，命中 1 场。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-100",
@@ -86,12 +51,34 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月13日",
       "isoDate": "2026-07-13",
-      "summary": "明天暂无已录入比赛。",
+      "summary": "今天暂无已录入比赛。",
       "predictions": [],
+      "reviews": []
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月14日",
+      "isoDate": "2026-07-14",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-101",
+          "matchId": "match-wik-101",
+          "time": "03:00",
+          "match": "法国 vs 西班牙",
+          "phase": "淘汰赛",
+          "pick": "平局",
+          "score": "1-1",
+          "confidence": "低",
+          "bucket": "low late",
+          "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
       "reviews": []
     }
   },
