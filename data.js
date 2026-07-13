@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-13 03:56",
+    "lastUpdated": "2026-07-14 00:03",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,52 +18,17 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月12日",
-      "isoDate": "2026-07-12",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-100",
-          "matchId": "match-wik-100",
-          "time": "09:00",
-          "match": "阿根廷 vs 瑞士",
-          "phase": "淘汰赛",
-          "pick": "阿根廷胜",
-          "score": "2-0",
-          "confidence": "高",
-          "bucket": "high",
-          "reason": "阿根廷综合评分优势明显，攻防稳定性更好",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-100",
-          "predictionId": "pred-wik-100",
-          "matchId": "match-wik-100",
-          "match": "阿根廷 vs 瑞士",
-          "predict": "阿根廷胜 2-0",
-          "actual": "3-1",
-          "actualScore": "3-1",
-          "status": "hit",
-          "exact": false,
-          "note": "方向命中，比分仍有偏差"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月13日",
       "isoDate": "2026-07-13",
-      "summary": "今天暂无已录入比赛。",
+      "summary": "昨天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月14日",
       "isoDate": "2026-07-14",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-101",
@@ -76,6 +41,41 @@ window.WORLD_CUP_DATA = {
           "confidence": "低",
           "bucket": "low late",
           "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-101",
+          "predictionId": "pred-wik-101",
+          "matchId": "match-wik-101",
+          "match": "法国 vs 西班牙",
+          "predict": "平局 1-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月15日",
+      "isoDate": "2026-07-15",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-102",
+          "matchId": "match-wik-102",
+          "time": "03:00",
+          "match": "英格兰 vs 阿根廷",
+          "phase": "淘汰赛",
+          "pick": "阿根廷胜",
+          "score": "1-2",
+          "confidence": "中",
+          "bucket": "mid late",
+          "reason": "阿根廷整体实力略占优，但比赛可能接近",
           "source": "auto"
         }
       ],
