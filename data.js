@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-14 00:03",
+    "lastUpdated": "2026-07-15 01:15",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,17 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月13日",
-      "isoDate": "2026-07-13",
-      "summary": "昨天暂无已录入比赛。",
-      "predictions": [],
-      "reviews": []
-    },
-    "today": {
-      "label": "今天",
       "date": "7月14日",
       "isoDate": "2026-07-14",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-101",
@@ -59,11 +51,11 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月15日",
       "isoDate": "2026-07-15",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-102",
@@ -79,6 +71,27 @@ window.WORLD_CUP_DATA = {
           "source": "auto"
         }
       ],
+      "reviews": [
+        {
+          "id": "review-wik-102",
+          "predictionId": "pred-wik-102",
+          "matchId": "match-wik-102",
+          "match": "英格兰 vs 阿根廷",
+          "predict": "阿根廷胜 1-2",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月16日",
+      "isoDate": "2026-07-16",
+      "summary": "明天暂无已录入比赛。",
+      "predictions": [],
       "reviews": []
     }
   },
