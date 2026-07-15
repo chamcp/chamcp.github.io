@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-15 13:13",
+    "lastUpdated": "2026-07-16 00:19",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,44 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月14日",
-      "isoDate": "2026-07-14",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 0 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-101",
-          "matchId": "match-wik-101",
-          "time": "03:00",
-          "match": "法国 vs 西班牙",
-          "phase": "淘汰赛",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low late",
-          "reason": "双方评分接近，胜负不确定性较高",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-101",
-          "predictionId": "pred-wik-101",
-          "matchId": "match-wik-101",
-          "match": "法国 vs 西班牙",
-          "predict": "平局 1-1",
-          "actual": "0-2",
-          "actualScore": "0-2",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月15日",
       "isoDate": "2026-07-15",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-102",
@@ -86,10 +51,18 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月16日",
       "isoDate": "2026-07-16",
+      "summary": "今天暂无已录入比赛。",
+      "predictions": [],
+      "reviews": []
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月17日",
+      "isoDate": "2026-07-17",
       "summary": "明天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
