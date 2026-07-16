@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-16 17:11",
+    "lastUpdated": "2026-07-17 00:48",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,53 +18,40 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月15日",
-      "isoDate": "2026-07-15",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-102",
-          "matchId": "match-wik-102",
-          "time": "03:00",
-          "match": "英格兰 vs 阿根廷",
-          "phase": "淘汰赛",
-          "pick": "阿根廷胜",
-          "score": "1-2",
-          "confidence": "中",
-          "bucket": "mid late",
-          "reason": "阿根廷整体实力略占优，但比赛可能接近",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-102",
-          "predictionId": "pred-wik-102",
-          "matchId": "match-wik-102",
-          "match": "英格兰 vs 阿根廷",
-          "predict": "阿根廷胜 1-2",
-          "actual": "1-2",
-          "actualScore": "1-2",
-          "status": "hit",
-          "exact": true,
-          "note": "方向和比分均精准"
-        }
-      ]
+      "date": "7月16日",
+      "isoDate": "2026-07-16",
+      "summary": "昨天暂无已录入比赛。",
+      "predictions": [],
+      "reviews": []
     },
     "today": {
       "label": "今天",
-      "date": "7月16日",
-      "isoDate": "2026-07-16",
+      "date": "7月17日",
+      "isoDate": "2026-07-17",
       "summary": "今天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
     "tomorrow": {
       "label": "明天",
-      "date": "7月17日",
-      "isoDate": "2026-07-17",
-      "summary": "明天暂无已录入比赛。",
-      "predictions": [],
+      "date": "7月18日",
+      "isoDate": "2026-07-18",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-103",
+          "matchId": "match-wik-103",
+          "time": "05:00",
+          "match": "法国 vs 英格兰",
+          "phase": "淘汰赛",
+          "pick": "平局",
+          "score": "1-1",
+          "confidence": "低",
+          "bucket": "low late",
+          "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
       "reviews": []
     }
   },
