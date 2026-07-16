@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-16 00:19",
+    "lastUpdated": "2026-07-16 17:11",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "7月15日",
       "isoDate": "2026-07-15",
-      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 1 场。",
       "predictions": [
         {
           "id": "pred-wik-102",
@@ -43,11 +43,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-102",
           "match": "英格兰 vs 阿根廷",
           "predict": "阿根廷胜 1-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
-          "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "actual": "1-2",
+          "actualScore": "1-2",
+          "status": "hit",
+          "exact": true,
+          "note": "方向和比分均精准"
         }
       ]
     },
@@ -1391,6 +1391,32 @@ window.WORLD_CUP_DATA = {
       "home": "英格兰",
       "away": "阿根廷",
       "match": "英格兰 vs 阿根廷",
+      "kick": "03:00",
+      "state": "已完赛",
+      "actualScore": "1-2"
+    },
+    {
+      "id": "match-wik-103",
+      "isoDate": "2026-07-19",
+      "coverageDate": "2026-07-18",
+      "date": "7月19日",
+      "stage": "淘汰赛",
+      "home": "法国",
+      "away": "英格兰",
+      "match": "法国 vs 英格兰",
+      "kick": "05:00",
+      "state": "未开赛",
+      "actualScore": null
+    },
+    {
+      "id": "match-wik-104",
+      "isoDate": "2026-07-20",
+      "coverageDate": "2026-07-19",
+      "date": "7月20日",
+      "stage": "淘汰赛",
+      "home": "西班牙",
+      "away": "阿根廷",
+      "match": "西班牙 vs 阿根廷",
       "kick": "03:00",
       "state": "未开赛",
       "actualScore": null
