@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-17 00:48",
+    "lastUpdated": "2026-07-18 00:13",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,25 +18,17 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月16日",
-      "isoDate": "2026-07-16",
+      "date": "7月17日",
+      "isoDate": "2026-07-17",
       "summary": "昨天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
     "today": {
       "label": "今天",
-      "date": "7月17日",
-      "isoDate": "2026-07-17",
-      "summary": "今天暂无已录入比赛。",
-      "predictions": [],
-      "reviews": []
-    },
-    "tomorrow": {
-      "label": "明天",
       "date": "7月18日",
       "isoDate": "2026-07-18",
-      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-103",
@@ -49,6 +41,41 @@ window.WORLD_CUP_DATA = {
           "confidence": "低",
           "bucket": "low late",
           "reason": "双方评分接近，胜负不确定性较高",
+          "source": "auto"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "review-wik-103",
+          "predictionId": "pred-wik-103",
+          "matchId": "match-wik-103",
+          "match": "法国 vs 英格兰",
+          "predict": "平局 1-1",
+          "actual": "待开奖",
+          "actualScore": null,
+          "status": "pending",
+          "exact": false,
+          "note": "比赛未结束，暂不计入命中率"
+        }
+      ]
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月19日",
+      "isoDate": "2026-07-19",
+      "summary": "明天有 1 场赛前预测，比赛结束后会自动进入复盘。",
+      "predictions": [
+        {
+          "id": "pred-wik-104",
+          "matchId": "match-wik-104",
+          "time": "03:00",
+          "match": "西班牙 vs 阿根廷",
+          "phase": "淘汰赛",
+          "pick": "阿根廷胜",
+          "score": "1-2",
+          "confidence": "中",
+          "bucket": "mid late",
+          "reason": "阿根廷整体实力略占优，但比赛可能接近",
           "source": "auto"
         }
       ],
