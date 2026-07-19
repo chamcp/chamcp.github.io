@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-19 17:26",
+    "lastUpdated": "2026-07-20 00:56",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,44 +18,9 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月18日",
-      "isoDate": "2026-07-18",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 0 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-103",
-          "matchId": "match-wik-103",
-          "time": "05:00",
-          "match": "法国 vs 英格兰",
-          "phase": "淘汰赛",
-          "pick": "平局",
-          "score": "1-1",
-          "confidence": "低",
-          "bucket": "low late",
-          "reason": "双方评分接近，胜负不确定性较高",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-103",
-          "predictionId": "pred-wik-103",
-          "matchId": "match-wik-103",
-          "match": "法国 vs 英格兰",
-          "predict": "平局 1-1",
-          "actual": "4-6",
-          "actualScore": "4-6",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        }
-      ]
-    },
-    "today": {
-      "label": "今天",
       "date": "7月19日",
       "isoDate": "2026-07-19",
-      "summary": "今天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
       "predictions": [
         {
           "id": "pred-wik-104",
@@ -86,10 +51,18 @@ window.WORLD_CUP_DATA = {
         }
       ]
     },
-    "tomorrow": {
-      "label": "明天",
+    "today": {
+      "label": "今天",
       "date": "7月20日",
       "isoDate": "2026-07-20",
+      "summary": "今天暂无已录入比赛。",
+      "predictions": [],
+      "reviews": []
+    },
+    "tomorrow": {
+      "label": "明天",
+      "date": "7月21日",
+      "isoDate": "2026-07-21",
       "summary": "明天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
