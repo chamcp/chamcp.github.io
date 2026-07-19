@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-19 00:55",
+    "lastUpdated": "2026-07-19 17:26",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "7月18日",
       "isoDate": "2026-07-18",
-      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 0 场。",
       "predictions": [
         {
           "id": "pred-wik-103",
@@ -43,11 +43,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-103",
           "match": "法国 vs 英格兰",
           "predict": "平局 1-1",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "4-6",
+          "actualScore": "4-6",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         }
       ]
     },
@@ -1432,8 +1432,8 @@ window.WORLD_CUP_DATA = {
       "away": "英格兰",
       "match": "法国 vs 英格兰",
       "kick": "05:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "4-6"
     },
     {
       "id": "match-wik-104",
