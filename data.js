@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-20 00:56",
+    "lastUpdated": "2026-07-20 19:21",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -20,7 +20,7 @@ window.WORLD_CUP_DATA = {
       "label": "昨天",
       "date": "7月19日",
       "isoDate": "2026-07-19",
-      "summary": "昨天的比赛还在进行或等待开赛，复盘结果先标为待复盘。",
+      "summary": "昨天 1 场预测中，已复盘 1 场，命中 0 场。",
       "predictions": [
         {
           "id": "pred-wik-104",
@@ -43,11 +43,11 @@ window.WORLD_CUP_DATA = {
           "matchId": "match-wik-104",
           "match": "西班牙 vs 阿根廷",
           "predict": "阿根廷胜 1-2",
-          "actual": "待开奖",
-          "actualScore": null,
-          "status": "pending",
+          "actual": "1-0",
+          "actualScore": "1-0",
+          "status": "miss",
           "exact": false,
-          "note": "比赛未结束，暂不计入命中率"
+          "note": "方向未命中，需要复盘球队状态和临场变化"
         }
       ]
     },
@@ -1418,8 +1418,8 @@ window.WORLD_CUP_DATA = {
       "away": "阿根廷",
       "match": "西班牙 vs 阿根廷",
       "kick": "03:00",
-      "state": "未开赛",
-      "actualScore": null
+      "state": "已完赛",
+      "actualScore": "1-0"
     }
   ]
 };
