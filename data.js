@@ -1,7 +1,7 @@
 window.WORLD_CUP_DATA = {
   "meta": {
     "schemaVersion": 3,
-    "lastUpdated": "2026-07-20 19:21",
+    "lastUpdated": "2026-07-21 00:57",
     "timezone": "Asia/Shanghai",
     "updateMode": "auto",
     "currentDayKey": "today",
@@ -18,51 +18,24 @@ window.WORLD_CUP_DATA = {
   "days": {
     "yesterday": {
       "label": "昨天",
-      "date": "7月19日",
-      "isoDate": "2026-07-19",
-      "summary": "昨天 1 场预测中，已复盘 1 场，命中 0 场。",
-      "predictions": [
-        {
-          "id": "pred-wik-104",
-          "matchId": "match-wik-104",
-          "time": "03:00",
-          "match": "西班牙 vs 阿根廷",
-          "phase": "淘汰赛",
-          "pick": "阿根廷胜",
-          "score": "1-2",
-          "confidence": "中",
-          "bucket": "mid late",
-          "reason": "阿根廷整体实力略占优，但比赛可能接近",
-          "source": "auto"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review-wik-104",
-          "predictionId": "pred-wik-104",
-          "matchId": "match-wik-104",
-          "match": "西班牙 vs 阿根廷",
-          "predict": "阿根廷胜 1-2",
-          "actual": "1-0",
-          "actualScore": "1-0",
-          "status": "miss",
-          "exact": false,
-          "note": "方向未命中，需要复盘球队状态和临场变化"
-        }
-      ]
+      "date": "7月20日",
+      "isoDate": "2026-07-20",
+      "summary": "昨天暂无已录入比赛。",
+      "predictions": [],
+      "reviews": []
     },
     "today": {
       "label": "今天",
-      "date": "7月20日",
-      "isoDate": "2026-07-20",
+      "date": "7月21日",
+      "isoDate": "2026-07-21",
       "summary": "今天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
     },
     "tomorrow": {
       "label": "明天",
-      "date": "7月21日",
-      "isoDate": "2026-07-21",
+      "date": "7月22日",
+      "isoDate": "2026-07-22",
       "summary": "明天暂无已录入比赛。",
       "predictions": [],
       "reviews": []
