@@ -1,971 +1,314 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>世界杯预测追踪</title>
-    <style>
-      :root {
-        --blue-950: #061a40;
-        --blue-900: #08285f;
-        --blue-800: #0b3f91;
-        --blue-700: #1556c0;
-        --blue-100: #eaf2ff;
-        --blue-050: #f5f9ff;
-        --ink: #111827;
-        --muted: #5b6577;
-        --line: #dbe4f0;
-        --panel: #ffffff;
-        --panel-soft: #f8fbff;
-        --hit: #1769d1;
-        --miss: #d83b3b;
-        --pending: #f5bc32;
-        --pending-text: #4b3300;
-        --shadow: 0 18px 50px rgba(5, 21, 55, 0.18);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        min-width: 320px;
-        min-height: 100vh;
-        color: var(--ink);
-        font-family:
-          Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", Arial,
-          sans-serif;
-        background:
-          radial-gradient(circle at 14% 0%, rgba(76, 134, 255, 0.5), transparent 30%),
-          linear-gradient(135deg, var(--blue-950) 0%, var(--blue-900) 52%, #0d3c83 100%);
-        -webkit-font-smoothing: antialiased;
-      }
-
-      button,
-      select {
-        font: inherit;
-      }
-
-      .app {
-        width: min(1180px, calc(100vw - 40px));
-        margin: 0 auto;
-        padding: 34px 0 42px;
-      }
-
-      .hero {
-        color: #fff;
-        padding: 8px 4px 24px;
-      }
-
-      .topline {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-      }
-
-      .title-group h1 {
-        margin: 0;
-        font-size: clamp(30px, 4vw, 46px);
-        line-height: 1.05;
-        letter-spacing: 0;
-      }
-
-      .title-group p {
-        margin: 12px 0 0;
-        max-width: 650px;
-        color: rgba(255, 255, 255, 0.78);
-        font-size: 15px;
-        line-height: 1.7;
-      }
-
-      .meta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 14px;
-      }
-
-      .meta-pill {
-        display: inline-flex;
-        align-items: center;
-        min-height: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 7px;
-        padding: 6px 10px;
-        color: rgba(255, 255, 255, 0.78);
-        background: rgba(255, 255, 255, 0.1);
-        font-size: 12px;
-        line-height: 1.2;
-      }
-
-      .meta-pill strong {
-        margin-left: 6px;
-        color: #fff;
-      }
-
-      .date-picker {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(16px);
-      }
-
-      .date-picker button {
-        min-width: 72px;
-        border: 0;
-        border-radius: 6px;
-        padding: 9px 12px;
-        color: rgba(255, 255, 255, 0.82);
-        background: transparent;
-        cursor: pointer;
-      }
-
-      .date-picker button.active {
-        color: var(--blue-900);
-        background: #fff;
-      }
-
-      .metric-strip {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 26px;
-      }
-
-      .hero-metric {
-        min-height: 94px;
-        padding: 18px 18px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 8px;
-        color: #fff;
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .hero-metric span {
-        display: block;
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 13px;
-      }
-
-      .hero-metric strong {
-        display: block;
-        margin-top: 8px;
-        font-size: 28px;
-        line-height: 1;
-      }
-
-      .workspace {
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        border-radius: 8px;
-        background: var(--panel);
-        box-shadow: var(--shadow);
-      }
-
-      .section {
-        padding: 24px 26px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .section:last-child {
-        border-bottom: 0;
-      }
-
-      .section-head {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 16px;
-      }
-
-      h2 {
-        margin: 0;
-        font-size: 19px;
-        line-height: 1.25;
-      }
-
-      .section-head p {
-        margin: 6px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
-      .control-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .chip,
-      .select {
-        height: 36px;
-        border: 1px solid var(--line);
-        border-radius: 7px;
-        color: #23314a;
-        background: #fff;
-      }
-
-      .chip {
-        padding: 0 12px;
-        cursor: pointer;
-      }
-
-      .chip.active {
-        border-color: #8fb6ff;
-        color: var(--blue-900);
-        background: var(--blue-100);
-      }
-
-      .select {
-        padding: 0 12px;
-      }
-
-      .table-wrap {
-        overflow-x: auto;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fff;
-      }
-
-      .empty-state {
-        color: var(--muted);
-        text-align: center;
-        background: #fff;
-      }
-
-        table {
-        width: 100%;
-        border-collapse: collapse;
-        min-width: 640px;
-      }
-
-      th,
-      td {
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--line);
-        text-align: left;
-        vertical-align: middle;
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      th {
-        color: #566176;
-        background: var(--panel-soft);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0;
-      }
-
-      tr:last-child td {
-        border-bottom: 0;
-      }
-
-      .match {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-      }
-
-      .match strong {
-        font-size: 14px;
-      }
-
-      .match span,
-      .reason,
-      .subtle {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .prediction {
-        display: inline-flex;
-        align-items: center;
-        min-width: 66px;
-        justify-content: center;
-        border-radius: 7px;
-        padding: 7px 10px;
-        color: #0b2a5c;
-        background: var(--blue-100);
-        font-weight: 700;
-      }
-
-      .confidence {
-        display: inline-flex;
-        width: 52px;
-        justify-content: center;
-        border-radius: 7px;
-        padding: 6px 0;
-        font-weight: 700;
-      }
-
-      .confidence.high {
-        color: #083b8a;
-        background: #d8e8ff;
-      }
-
-      .confidence.mid {
-        color: #6b4700;
-        background: #fff0c9;
-      }
-
-      .confidence.low {
-        color: #783232;
-        background: #ffe1df;
-      }
-
-      .review-panel {
-        display: grid;
-        grid-template-columns: 0.9fr 1.4fr;
-        gap: 18px;
-      }
-
-      .summary-box {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
-        padding: 18px;
-      }
-
-      .summary-box h3 {
-        margin: 0 0 10px;
-        font-size: 16px;
-      }
-
-      .summary-box p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.65;
-      }
-
-      .mini-stats {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .mini-stat {
-        min-height: 74px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 12px;
-        background: #fff;
-      }
-
-      .mini-stat span {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .mini-stat strong {
-        display: block;
-        margin-top: 5px;
-        color: var(--blue-900);
-        font-size: 22px;
-      }
-
-      .status-block {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 92px;
-        min-height: 38px;
-        border-radius: 8px;
-        padding: 8px 12px;
-        color: #fff;
-        font-weight: 800;
-        white-space: nowrap;
-      }
-
-      .status-hit {
-        background: var(--hit);
-      }
-
-      .status-miss {
-        background: var(--miss);
-      }
-
-      .status-pending {
-        color: var(--pending-text);
-        background: var(--pending);
-      }
-
-      .score-hit {
-        background: #188351;
-      }
-
-      .score-miss {
-        background: #828e9e;
-      }
-
-      .score-pending {
-        color: var(--pending-text);
-        background: var(--pending);
-      }
-
-      .score {
-        font-weight: 800;
-      }
-
-      .schedule {
-        background: #fbfdff;
-      }
-
-      .schedule table {
-        min-width: 760px;
-      }
-
-      .stage {
-        display: inline-flex;
-        border-radius: 7px;
-        padding: 5px 9px;
-        color: #26334a;
-        background: #eef3fb;
-        font-weight: 700;
-        font-size: 12px;
-      }
-
-      .footer-note {
-        margin: 14px 0 0;
-        color: #657184;
-        font-size: 12px;
-      }
-
-      @media (max-width: 860px) {
-        .app {
-          width: min(100vw - 24px, 1180px);
-          padding-top: 20px;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>股票追踪</title>
+  <style>
+    :root {
+      --bg: #f2f4f8;
+      --panel: #ffffff;
+      --ink: #171a23;
+      --muted: #696f7d;
+      --line: #e2e6ed;
+      --up: #d83b3b;
+      --down: #188351;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .app {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    h1 {
+      font-size: 26px;
+      letter-spacing: -0.3px;
+      font-weight: 700;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .summary {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0 14px;
+    }
+    .summary-item {
+      flex: 1;
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .summary-item .label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    .summary-item .value {
+      display: block;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .cards { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-name {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .card-name h2 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .card-name code {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .card-right {
+      text-align: right;
+    }
+    .card-right .price {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .card-right .change {
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .is-up { color: var(--up); }
+    .is-down { color: var(--down); }
+    .card-pl {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .pl-item {
+      flex: 1;
+      text-align: center;
+    }
+    .pl-item .label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .pl-item .value {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .card-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .detail-item { text-align: center; }
+    .detail-item .label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .detail-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .no-holding {
+      opacity: 0.5;
+    }
+    .note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    @media (max-width: 420px) {
+      .app { padding: 16px 12px 32px; }
+      h1 { font-size: 22px; }
+      .summary-item .value { font-size: 17px; }
+      .card-right .price { font-size: 19px; }
+      .card-details { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>📈 光伏组合</h1>
+    <p class="sub">金刚光伏 · 聚和材料 · 迈为股份</p>
+
+    <div class="summary">
+      <div class="summary-item">
+        <span class="label">持仓市值</span>
+        <span class="value" id="totalValue">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">总盈亏</span>
+        <span class="value" id="totalPL">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">收益率</span>
+        <span class="value" id="totalReturn">-</span>
+      </div>
+    </div>
+
+    <div class="cards" id="stockCards"></div>
+
+    <p class="note" id="updateNote"></p>
+  </div>
+
+  <script src="./data.js"></script>
+  <script>
+    const HOLDINGS = {
+      sz300093: { shares: 16900, cost: 18.09 },
+    };
+
+    function fmt(n) { return n.toFixed(2); }
+
+    function arrow(v) {
+      if (v > 0) return '▲';
+      if (v < 0) return '▼';
+      return '—';
+    }
+
+    function render() {
+      const data = window.STOCK_DATA;
+      if (!data || !data.stocks) {
+        document.getElementById('stockCards').innerHTML =
+          '<p style="color:var(--muted);padding:20px;text-align:center">暂无数据</p>';
+        return;
+      }
+
+      const stocks = data.stocks;
+      let totalValue = 0;
+      let totalCost = 0;
+      let totalPL = 0;
+
+      document.getElementById('stockCards').innerHTML = stocks.map(s => {
+        const holding = HOLDINGS[s.code];
+        const hasHolding = !!holding;
+        const costTotal = hasHolding ? holding.shares * holding.cost : 0;
+        const marketValue = hasHolding ? holding.shares * s.price : 0;
+        const pl = marketValue - costTotal;
+        const plPct = costTotal > 0 ? (pl / costTotal) * 100 : 0;
+        const dayPL = hasHolding ? holding.shares * s.change : 0;
+
+        if (hasHolding) {
+          totalValue += marketValue;
+          totalCost += costTotal;
+          totalPL += pl;
         }
 
-        .topline,
-        .section-head,
-        .review-panel {
-          display: block;
-        }
+        const cls = s.change >= 0 ? 'is-up' : 'is-down';
+        const plCls = pl >= 0 ? 'is-up' : 'is-down';
+        const cardCls = hasHolding ? '' : 'no-holding';
 
-        .date-picker {
-          margin-top: 18px;
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .date-picker button {
-          flex: 1;
-          min-width: 0;
-        }
-
-        .metric-strip {
-          grid-template-columns: 1fr;
-        }
-
-        .section {
-          padding: 20px 16px;
-        }
-
-        .control-row {
-          margin-top: 14px;
-        }
-
-        .summary-box {
-          margin-bottom: 16px;
-        }
-
-        table {
-          min-width: 0;
-        }
-
-        th,
-        td {
-          padding: 10px 10px;
-          font-size: 13px;
-        }
-
-        th:last-child,
-        td:last-child {
-          display: none;
-        }
-      }
-
-      @media (max-width: 500px) {
-        .hero-metric strong {
-          font-size: 22px;
-        }
-
-        h2 {
-          font-size: 17px;
-        }
-
-        .section {
-          padding: 14px 12px;
-        }
-
-        .section-head p {
-          font-size: 12px;
-        }
-
-        th,
-        td {
-          padding: 8px 6px;
-          font-size: 12px;
-        }
-
-        th {
-          font-size: 11px;
-        }
-
-        .status-block {
-          min-width: 64px;
-          min-height: 28px;
-          font-size: 11px;
-          padding: 4px 8px;
-        }
-
-        .status-block {
-          min-width: 64px;
-          min-height: 28px;
-          font-size: 11px;
-          padding: 4px 8px;
-        }
-
-        .prediction {
-          min-width: 50px;
-          font-size: 12px;
-          padding: 5px 7px;
-        }
-
-        .confidence {
-          width: 40px;
-          font-size: 12px;
-          padding: 4px 0;
-        }
-
-        .match strong {
-          font-size: 12px;
-        }
-
-        .match span,
-        .reason,
-        .subtle {
-          font-size: 11px;
-        }
-
-        .meta-pill {
-          font-size: 11px;
-          min-height: 26px;
-          padding: 4px 8px;
-        }
-
-        .date-picker button {
-          font-size: 13px;
-          min-width: 0;
-          padding: 7px 8px;
-        }
-
-        .chip,
-        .select {
-          height: 30px;
-          font-size: 12px;
-          padding: 0 8px;
-        }
-
-        .mini-stat strong {
-          font-size: 18px;
-        }
-
-        .mini-stat {
-          min-height: 60px;
-          padding: 10px;
-        }
-
-        .table-wrap {
-          border-radius: 6px;
-          margin: 0 -4px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="app">
-      <header class="hero">
-        <div class="topline">
-          <div class="title-group">
-            <h1>世界杯预测追踪</h1>
-            <p>
-              用一个简洁页面记录每日预测、赛后复盘和完整赛程。蓝色表示预测中，红色表示预测不中，黄色表示待复盘。
-            </p>
-            <div class="meta-row" aria-label="数据更新状态">
-              <span class="meta-pill">更新方式<strong id="updateModeBadge">自动更新</strong></span>
-              <span class="meta-pill">数据源<strong id="sourceBadge">读取中</strong></span>
-              <span class="meta-pill">最后更新<strong id="lastUpdatedBadge">读取中</strong></span>
-            </div>
-          </div>
-          <div class="date-picker" aria-label="日期切换">
-            <button type="button" data-date="yesterday">昨天</button>
-            <button class="active" type="button" data-date="today">今天</button>
-            <button type="button" data-date="tomorrow">明天</button>
-          </div>
-        </div>
-
-        <div class="metric-strip" aria-label="总览数据">
-          <div class="hero-metric">
-            <span>当前比赛</span>
-            <strong id="todayCount">4 场</strong>
-          </div>
-          <div class="hero-metric">
-            <span>当前命中</span>
-            <strong id="yesterdayHit">3 / 4</strong>
-          </div>
-          <div class="hero-metric">
-            <span>总命中率</span>
-            <strong id="overallAccuracy">68%</strong>
-          </div>
-        </div>
-      </header>
-
-      <section class="workspace">
-        <div class="section">
-          <div class="section-head">
-            <div>
-              <h2>每日预测</h2>
-              <p>只保留当天要看的关键信息：比赛、预测、比分、信心和一句理由。</p>
-            </div>
-            <div class="control-row" aria-label="预测筛选">
-              <button class="chip active" type="button" data-filter="all">全部</button>
-              <button class="chip" type="button" data-filter="high">高信心</button>
-              <button class="chip" type="button" data-filter="late">晚场</button>
-            </div>
-          </div>
-
-          <div class="table-wrap">
-            <table aria-label="每日预测表">
-              <thead>
-                <tr>
-                  <th>时间</th>
-                  <th>比赛</th>
-                  <th>预测</th>
-                  <th>比分</th>
-                  <th>信心</th>
-                  <th>理由</th>
-                </tr>
-              </thead>
-              <tbody id="predictionBody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-head">
-            <div>
-              <h2>每日复盘与总数据</h2>
-              <p>复盘区域用大色块表达结果，蓝色/绿色表示命中，红色表示不中，黄色表示待复盘。</p>
-            </div>
-          </div>
-
-          <div class="review-panel">
-            <aside class="summary-box">
-              <h3 id="reviewTitle">复盘摘要</h3>
-              <p id="reviewSummary"></p>
-              <div class="mini-stats">
-                <div class="mini-stat">
-                  <span>总预测场次</span>
-                  <strong id="totalPredictions">25</strong>
-                </div>
-                <div class="mini-stat">
-                  <span>胜平负命中率</span>
-                  <strong id="reviewAccuracy">68%</strong>
-                </div>
-                <div class="mini-stat">
-                  <span>精准比分</span>
-                  <strong id="exactScores">0</strong>
-                </div>
-                <div class="mini-stat">
-                  <span>最近 7 天</span>
-                  <strong id="recentAccuracy">0%</strong>
-                </div>
+        return `
+          <div class="card ${cardCls}">
+            <div class="card-top">
+              <div class="card-name">
+                <h2>${s.name}</h2>
+                <code>${s.code}</code>
               </div>
-            </aside>
-
-            <div class="table-wrap">
-              <table aria-label="每日复盘表">
-                <thead>
-                  <tr>
-                    <th>比赛</th>
-                    <th>预测</th>
-                    <th>真实</th>
-                    <th>胜负</th>
-                    <th>比分</th>
-                    <th>复盘</th>
-                  </tr>
-                </thead>
-                <tbody id="reviewBody"></tbody>
-              </table>
+              <div class="card-right ${cls}">
+                <span class="price">${fmt(s.price)}</span>
+                <span class="change">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${fmt(s.change)}</span>
+                <span class="change">(${s.changePct >= 0 ? '+' : ''}${s.changePct}%)</span>
+              </div>
+            </div>
+            ${hasHolding ? `
+            <div class="card-pl">
+              <div class="pl-item">
+                <div class="label">持仓</div>
+                <div class="value">${fmt(holding.shares / 10000, 2)} 万股</div>
+              </div>
+              <div class="pl-item">
+                <div class="label">成本</div>
+                <div class="value">${fmt(holding.cost)}</div>
+              </div>
+              <div class="pl-item ${plCls}">
+                <div class="label">盈亏</div>
+                <div class="value">${pl >= 0 ? '+' : ''}${fmt(pl)}</div>
+              </div>
+              <div class="pl-item ${plCls}">
+                <div class="label">收益率</div>
+                <div class="value">${plPct >= 0 ? '+' : ''}${plPct.toFixed(1)}%</div>
+              </div>
+            </div>
+            ` : `
+            <div class="card-pl">
+              <div class="pl-item" style="flex:2">
+                <div class="label">未记录持仓</div>
+                <div class="value" style="color:var(--muted);font-size:12px">点击编辑</div>
+              </div>
+            </div>
+            `}
+            <div class="card-details">
+              <div class="detail-item">
+                <div class="label">今开</div>
+                <div class="value">${fmt(s.open)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">昨收</div>
+                <div class="value">${fmt(s.prevClose)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">最高</div>
+                <div class="value">${fmt(s.high)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">最低</div>
+                <div class="value">${fmt(s.low)}</div>
+              </div>
             </div>
           </div>
-        </div>
+        `;
+      }).join('');
 
-        <div class="section schedule">
-          <div class="section-head">
-            <div>
-              <h2>世界杯赛程</h2>
-              <p>附加数据区，用来查完整赛程，不抢每日预测和复盘的主线。</p>
-            </div>
-            <div class="control-row">
-              <select class="select" id="stageFilter" aria-label="阶段筛选">
-                <option value="all">全部阶段</option>
-                <option value="小组赛">小组赛</option>
-                <option value="淘汰赛">淘汰赛</option>
-              </select>
-            </div>
-          </div>
+      document.getElementById('totalValue').textContent = fmt(totalValue);
+      document.getElementById('totalPL').textContent =
+        (totalPL >= 0 ? '+' : '') + fmt(totalPL);
+      document.getElementById('totalPL').className =
+        totalPL >= 0 ? 'is-up value' : 'is-down value';
+      const totalReturn = totalCost > 0 ? (totalPL / totalCost) * 100 : 0;
+      document.getElementById('totalReturn').textContent =
+        (totalReturn >= 0 ? '+' : '') + totalReturn.toFixed(1) + '%';
+      document.getElementById('totalReturn').className =
+        totalReturn >= 0 ? 'is-up value' : 'is-down value';
 
-          <div class="table-wrap">
-            <table aria-label="世界杯赛程表">
-              <thead>
-                <tr>
-                  <th>日期</th>
-                  <th>阶段</th>
-                  <th>比赛</th>
-                  <th>开球</th>
-                  <th>状态</th>
-                </tr>
-              </thead>
-              <tbody id="scheduleBody"></tbody>
-            </table>
-          </div>
-          <p class="footer-note" id="dataUpdateNote">
-            当前为示例数据。后续可以替换为你在 GPT 中已经做过的预测和真实赛果。
-          </p>
-        </div>
-      </section>
-    </main>
+      document.getElementById('updateNote').textContent =
+        `数据来源：${data.meta.source} · 更新于 ${data.meta.updatedAt}`;
+    }
 
-    <script src="./data.js"></script>
-    <script>
-      const trackerData = window.WORLD_CUP_DATA;
-      const { days, schedule } = trackerData;
-      let activeDayKey = trackerData.meta?.currentDayKey || "today";
-      let activePredictionFilter = "all";
-
-      if (!days[activeDayKey]) {
-        activeDayKey = "today";
-      }
-
-      const confidenceClass = {
-        高: "high",
-        中: "mid",
-        低: "low",
-      };
-
-      const statusMap = {
-        hit: ["预测中", "status-hit"],
-        miss: ["预测不中", "status-miss"],
-        pending: ["待复盘", "status-pending"],
-      };
-
-      const exactMap = {
-        hit: ["比分精准", "score-hit"],
-        miss: ["偏差", "score-miss"],
-        pending: ["待定", "score-pending"],
-      };
-
-      function getActiveDay() {
-        return days[activeDayKey] || days.today;
-      }
-
-      function getMatchName(item) {
-        return item.match || `${item.home} vs ${item.away}`;
-      }
-
-      function getAllPredictions() {
-        return Object.values(days).flatMap((day) => day.predictions || []);
-      }
-
-      function getAllReviews() {
-        return Object.values(days).flatMap((day) => day.reviews || []);
-      }
-
-      function getCompletedReviews(items) {
-        return items.filter((item) => item.status !== "pending");
-      }
-
-      function getHitReviews(items) {
-        return items.filter((item) => item.status === "hit");
-      }
-
-      function formatRate(hitCount, totalCount) {
-        return totalCount ? `${Math.round((hitCount / totalCount) * 100)}%` : "0%";
-      }
-
-      function renderMetrics() {
-        const day = getActiveDay();
-        const dayReviews = day.reviews || [];
-        const completedDayReviews = getCompletedReviews(dayReviews);
-        const hitDayReviews = getHitReviews(completedDayReviews);
-        const allCompletedReviews = getCompletedReviews(getAllReviews());
-        const allHitReviews = getHitReviews(allCompletedReviews);
-        const overallRate = formatRate(allHitReviews.length, allCompletedReviews.length);
-
-        document.getElementById("todayCount").textContent = `${(day.predictions || []).length} 场`;
-        document.getElementById("yesterdayHit").textContent = `${hitDayReviews.length} / ${completedDayReviews.length}`;
-        document.getElementById("overallAccuracy").textContent = overallRate;
-        document.getElementById("totalPredictions").textContent = String(getAllPredictions().length);
-        document.getElementById("reviewAccuracy").textContent = overallRate;
-        document.getElementById("exactScores").textContent = String(
-          allCompletedReviews.filter((item) => item.exact).length,
-        );
-        document.getElementById("recentAccuracy").textContent = overallRate;
-      }
-
-      function renderPredictions(filter = activePredictionFilter) {
-        const day = getActiveDay();
-        const rows = (day.predictions || []).filter((item) => {
-          if (filter === "all") return true;
-          return (item.bucket || "").split(" ").includes(filter);
-        });
-        const predictionBody = document.getElementById("predictionBody");
-
-        if (!rows.length) {
-          predictionBody.innerHTML = `
-            <tr>
-              <td class="empty-state" colspan="6">暂无${day.label}符合条件的预测。</td>
-            </tr>
-          `;
-          return;
-        }
-
-        predictionBody.innerHTML = rows
-          .map(
-            (item) => `
-              <tr>
-                <td class="score">${item.time}</td>
-                <td>
-                  <div class="match">
-                    <strong>${item.match}</strong>
-                    <span>${item.phase}</span>
-                  </div>
-                </td>
-                <td><span class="prediction">${item.pick}</span></td>
-                <td class="score">${item.score}</td>
-                <td><span class="confidence ${confidenceClass[item.confidence]}">${item.confidence}</span></td>
-                <td class="reason">${item.reason}</td>
-              </tr>
-            `,
-          )
-          .join("");
-      }
-
-      function renderReviews() {
-        const day = getActiveDay();
-        const reviewBody = document.getElementById("reviewBody");
-
-        document.getElementById("reviewTitle").textContent = `${day.label}复盘摘要`;
-        document.getElementById("reviewSummary").textContent = day.summary || "暂无复盘摘要。";
-
-        if (!day.reviews.length) {
-          reviewBody.innerHTML = `
-            <tr>
-              <td class="empty-state" colspan="6">暂无${day.label}复盘，比赛结束后再补充。</td>
-            </tr>
-          `;
-          return;
-        }
-
-        reviewBody.innerHTML = day.reviews
-          .map((item) => {
-            const [dirLabel, dirClass] = statusMap[item.status] || statusMap.pending;
-            const exactKey = item.status === "pending" ? "pending" : item.exact ? "hit" : "miss";
-            const [exactLabel, exactClass] = exactMap[exactKey] || exactMap.pending;
-            return `
-              <tr>
-                <td><strong>${item.match}</strong></td>
-                <td>${item.predict}</td>
-                <td>${item.actual}</td>
-                <td><span class="status-block ${dirClass}">${dirLabel}</span></td>
-                <td><span class="status-block ${exactClass}">${exactLabel}</span></td>
-                <td class="reason">${item.note}</td>
-              </tr>
-            `;
-          })
-          .join("");
-      }
-
-      function renderSchedule(stage = "all") {
-        const rows = schedule.filter((item) => stage === "all" || item.stage === stage);
-        document.getElementById("scheduleBody").innerHTML = rows
-          .map(
-            (item) => `
-              <tr>
-                <td>${item.date}</td>
-                <td><span class="stage">${item.stage}</span></td>
-                <td><strong>${getMatchName(item)}</strong></td>
-                <td>${item.kick}</td>
-                <td class="subtle">${item.state}</td>
-              </tr>
-            `,
-          )
-          .join("");
-      }
-
-      function renderUpdateNote() {
-        const meta = trackerData.meta || {};
-        const modeText = meta.updateMode === "auto" ? "自动更新" : "手动更新";
-        const sourceText = meta.sourceLabel || "未标注";
-        document.getElementById("updateModeBadge").textContent = modeText;
-        document.getElementById("sourceBadge").textContent = sourceText;
-        document.getElementById("lastUpdatedBadge").textContent = meta.lastUpdated || "未标注";
-        document.getElementById("dataUpdateNote").textContent =
-          `当前数据来源：${meta.source || "未标注"}。状态：${sourceText}，${modeText}。最后更新：${meta.lastUpdated || "未标注"}。`;
-      }
-
-      function syncActiveDateButton() {
-        document.querySelectorAll(".date-picker button").forEach((button) => {
-          button.classList.toggle("active", button.dataset.date === activeDayKey);
-        });
-      }
-
-      document.querySelectorAll(".date-picker button").forEach((button) => {
-        button.addEventListener("click", () => {
-          activeDayKey = button.dataset.date;
-          activePredictionFilter = "all";
-          document.querySelectorAll(".date-picker button").forEach((item) => item.classList.remove("active"));
-          button.classList.add("active");
-          document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
-          document.querySelector('[data-filter="all"]').classList.add("active");
-          renderMetrics();
-          renderPredictions();
-          renderReviews();
-        });
-      });
-
-      document.querySelectorAll("[data-filter]").forEach((button) => {
-        button.addEventListener("click", () => {
-          activePredictionFilter = button.dataset.filter;
-          document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
-          button.classList.add("active");
-          renderPredictions();
-        });
-      });
-
-      document.getElementById("stageFilter").addEventListener("change", (event) => {
-        renderSchedule(event.target.value);
-      });
-
-      syncActiveDateButton();
-      renderMetrics();
-      renderPredictions();
-      renderReviews();
-      renderSchedule();
-      renderUpdateNote();
-    </script>
-  </body>
+    render();
+  </script>
+</body>
 </html>
