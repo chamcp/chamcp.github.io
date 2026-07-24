@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>股票追踪</title>
+  <style>
+    :root {
+      --bg: #f2f4f8;
+      --panel: #ffffff;
+      --ink: #171a23;
+      --muted: #696f7d;
+      --line: #e2e6ed;
+      --up: #d83b3b;
+      --down: #188351;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .app {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    h1 {
+      font-size: 26px;
+      letter-spacing: -0.3px;
+      font-weight: 700;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .summary {
+      display: flex;
+      gap: 10px;
+      margin: 18px 0 14px;
+    }
+    .summary-item {
+      flex: 1;
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .summary-item .label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    .summary-item .value {
+      display: block;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .cards { display: flex; flex-direction: column; gap: 10px; }
+    .card {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-name {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .card-name h2 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .card-name code {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .card-right {
+      text-align: right;
+    }
+    .card-right .price {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .card-right .change {
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+    .is-up { color: var(--up); }
+    .is-down { color: var(--down); }
+    .card-pl {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .pl-item {
+      flex: 1;
+      text-align: center;
+    }
+    .pl-item .label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .pl-item .value {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .card-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .detail-item { text-align: center; }
+    .detail-item .label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .detail-item .value {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .no-holding {
+      opacity: 0.5;
+    }
+    .note {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    @media (max-width: 420px) {
+      .app { padding: 16px 12px 32px; }
+      h1 { font-size: 22px; }
+      .summary-item .value { font-size: 17px; }
+      .card-right .price { font-size: 19px; }
+      .card-details { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>📈 光伏组合</h1>
+    <p class="sub">金刚光伏 · 聚和材料 · 迈为股份</p>
+
+    <div class="summary">
+      <div class="summary-item">
+        <span class="label">持仓市值</span>
+        <span class="value" id="totalValue">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">总盈亏</span>
+        <span class="value" id="totalPL">-</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">收益率</span>
+        <span class="value" id="totalReturn">-</span>
+      </div>
+    </div>
+
+    <div class="cards" id="stockCards"></div>
+
+    <p class="note" id="updateNote"></p>
+  </div>
+
+  <script src="./data.js"></script>
+  <script>
+    const HOLDINGS = {
+      sz300093: { shares: 16900, cost: 18.09 },
+    };
+
+    function fmt(n) { return n.toFixed(2); }
+
+    function arrow(v) {
+      if (v > 0) return '▲';
+      if (v < 0) return '▼';
+      return '—';
+    }
+
+    function render() {
+      const data = window.STOCK_DATA;
+      if (!data || !data.stocks) {
+        document.getElementById('stockCards').innerHTML =
+          '<p style="color:var(--muted);padding:20px;text-align:center">暂无数据</p>';
+        return;
+      }
+
+      const stocks = data.stocks;
+      let totalValue = 0;
+      let totalCost = 0;
+      let totalPL = 0;
+
+      document.getElementById('stockCards').innerHTML = stocks.map(s => {
+        const holding = HOLDINGS[s.code];
+        const hasHolding = !!holding;
+        const costTotal = hasHolding ? holding.shares * holding.cost : 0;
+        const marketValue = hasHolding ? holding.shares * s.price : 0;
+        const pl = marketValue - costTotal;
+        const plPct = costTotal > 0 ? (pl / costTotal) * 100 : 0;
+        const dayPL = hasHolding ? holding.shares * s.change : 0;
+
+        if (hasHolding) {
+          totalValue += marketValue;
+          totalCost += costTotal;
+          totalPL += pl;
+        }
+
+        const cls = s.change >= 0 ? 'is-up' : 'is-down';
+        const plCls = pl >= 0 ? 'is-up' : 'is-down';
+        const cardCls = hasHolding ? '' : 'no-holding';
+
+        return `
+          <div class="card ${cardCls}">
+            <div class="card-top">
+              <div class="card-name">
+                <h2>${s.name}</h2>
+                <code>${s.code}</code>
+              </div>
+              <div class="card-right ${cls}">
+                <span class="price">${fmt(s.price)}</span>
+                <span class="change">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${fmt(s.change)}</span>
+                <span class="change">(${s.changePct >= 0 ? '+' : ''}${s.changePct}%)</span>
+              </div>
+            </div>
+            ${hasHolding ? `
+            <div class="card-pl">
+              <div class="pl-item">
+                <div class="label">持仓</div>
+                <div class="value">${fmt(holding.shares / 10000, 2)} 万股</div>
+              </div>
+              <div class="pl-item">
+                <div class="label">成本</div>
+                <div class="value">${fmt(holding.cost)}</div>
+              </div>
+              <div class="pl-item ${plCls}">
+                <div class="label">盈亏</div>
+                <div class="value">${pl >= 0 ? '+' : ''}${fmt(pl)}</div>
+              </div>
+              <div class="pl-item ${plCls}">
+                <div class="label">收益率</div>
+                <div class="value">${plPct >= 0 ? '+' : ''}${plPct.toFixed(1)}%</div>
+              </div>
+            </div>
+            ` : `
+            <div class="card-pl">
+              <div class="pl-item" style="flex:2">
+                <div class="label">未记录持仓</div>
+                <div class="value" style="color:var(--muted);font-size:12px">点击编辑</div>
+              </div>
+            </div>
+            `}
+            <div class="card-details">
+              <div class="detail-item">
+                <div class="label">今开</div>
+                <div class="value">${fmt(s.open)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">昨收</div>
+                <div class="value">${fmt(s.prevClose)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">最高</div>
+                <div class="value">${fmt(s.high)}</div>
+              </div>
+              <div class="detail-item">
+                <div class="label">最低</div>
+                <div class="value">${fmt(s.low)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('totalValue').textContent = fmt(totalValue);
+      document.getElementById('totalPL').textContent =
+        (totalPL >= 0 ? '+' : '') + fmt(totalPL);
+      document.getElementById('totalPL').className =
+        totalPL >= 0 ? 'is-up value' : 'is-down value';
+      const totalReturn = totalCost > 0 ? (totalPL / totalCost) * 100 : 0;
+      document.getElementById('totalReturn').textContent =
+        (totalReturn >= 0 ? '+' : '') + totalReturn.toFixed(1) + '%';
+      document.getElementById('totalReturn').className =
+        totalReturn >= 0 ? 'is-up value' : 'is-down value';
+
+      document.getElementById('updateNote').textContent =
+        `数据来源：${data.meta.source} · 更新于 ${data.meta.updatedAt}`;
+    }
+
+    render();
+  </script>
+</body>
+</html>
