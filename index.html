@@ -124,60 +124,26 @@
       font-weight: 700;
       margin-top: 2px;
     }
-    .card-details {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
+    .detail-table {
+      width: 100%;
       margin-top: 10px;
       padding-top: 10px;
       border-top: 1px solid var(--line);
+      border-collapse: collapse;
     }
-    .detail-item { text-align: center; }
-    .detail-item .label {
+    .detail-table td {
+      text-align: center;
+      padding: 4px 0;
+      width: 25%;
+    }
+    .detail-table .label {
       color: var(--muted);
       font-size: 11px;
     }
-    .detail-item .value {
+    .detail-table .value {
       font-size: 13px;
       font-weight: 600;
       margin-top: 2px;
-    }
-    .range-bar {
-      margin: 6px 0 0;
-    }
-    .range-track {
-      position: relative;
-      height: 4px;
-      border-radius: 4px;
-      background: var(--line);
-      margin: 18px 0 6px;
-    }
-    .range-fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.3s;
-    }
-    .range-dot {
-      position: absolute;
-      top: 50%;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #fff;
-      border: 2px solid;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-    .range-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--muted);
-    }
-    .range-labels .cur {
-      font-weight: 800;
-      font-size: 13px;
     }
     .no-holding {
       opacity: 0.5;
@@ -193,7 +159,8 @@
       h1 { font-size: 22px; }
       .summary-item .value { font-size: 17px; }
       .card-right .price { font-size: 19px; }
-      .card-details { grid-template-columns: repeat(2, 1fr); }
+      .detail-table td { padding: 3px 1px; }
+      .detail-table .value { font-size: 12px; }
     }
   </style>
 </head>
@@ -308,27 +275,18 @@
               </div>
             </div>
             `}
-            <div class="card-details">
-              <div class="detail-item">
-                <div class="label">今开</div>
-                <div class="value">${fmt(s.open)}</div>
-              </div>
-              <div class="detail-item">
-                <div class="label">昨收</div>
-                <div class="value">${fmt(s.prevClose)}</div>
-              </div>
-            </div>
-            <div class="range-bar ${cls}">
-              <div class="range-track">
-                <div class="range-fill" style="width:${s.high > s.low ? ((s.price - s.low) / (s.high - s.low)) * 100 : 50}%;background:var(--${s.change >= 0 ? 'up' : 'down'})"></div>
-                <div class="range-dot" style="left:${s.high > s.low ? ((s.price - s.low) / (s.high - s.low)) * 100 : 50}%;border-color:var(--${s.change >= 0 ? 'up' : 'down'})"></div>
-              </div>
-              <div class="range-labels">
-                <span>${fmt(s.low)}</span>
-                <span class="cur ${cls}">${fmt(s.price)}</span>
-                <span>${fmt(s.high)}</span>
-              </div>
-            </div>
+            <table class="detail-table">
+              <tr>
+                <td><div class="label">今开</div><div class="value">${fmt(s.open)}</div></td>
+                <td><div class="label">昨收</div><div class="value">${fmt(s.prevClose)}</div></td>
+                <td><div class="label">最高</div><div class="value">${fmt(s.high)}</div></td>
+                <td><div class="label">最低</div><div class="value">${fmt(s.low)}</div></td>
+              </tr>
+              <tr>
+                <td colspan="2"><div class="label">涨跌幅</div><div class="value ${cls}">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${s.changePct}%</div></td>
+                <td colspan="2"><div class="label">振幅</div><div class="value">${((s.high - s.low) / s.prevClose * 100).toFixed(2)}%</div></td>
+              </tr>
+            </table>
           </div>
         `;
       }).join('');
