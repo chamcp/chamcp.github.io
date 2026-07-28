@@ -3,74 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>股票追踪</title>
+  <title>光伏组合 · 盯盘</title>
   <style>
+    @keyframes float {
+      0%,100%{transform:translateY(0)scale(1)}
+      50%{transform:translateY(-20px)scale(1.05)}
+    }
+    @keyframes pulse-glow {
+      0%,100%{opacity:.4}
+      50%{opacity:.8}
+    }
+    @keyframes slide-up {
+      from{opacity:0;transform:translateY(24px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes shimmer {
+      0%{background-position:200% 0}
+      100%{background-position:-200% 0}
+    }
+    @keyframes blink {
+      0%,100%{opacity:1}
+      50%{opacity:.3}
+    }
+    @keyframes confetti-fall {
+      0%{transform:translateY(-10px)rotate(0);opacity:1}
+      100%{transform:translateY(60px)rotate(360deg);opacity:0}
+    }
     :root {
-      --bg: #f2f4f8;
-      --panel: #ffffff;
-      --ink: #171a23;
-      --muted: #696f7d;
-      --line: #e2e6ed;
-      --up: #d83b3b;
-      --down: #188351;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --up: #ff4757;
+      --down: #2ed573;
+      --up-bg: rgba(255,71,87,.15);
+      --down-bg: rgba(46,213,115,.15);
+      --glass: rgba(255,255,255,.08);
+      --glass-border: rgba(255,255,255,.12);
+      --glass-hover: rgba(255,255,255,.14);
     }
     * { box-sizing: border-box; margin: 0; }
     body {
       margin: 0;
       min-height: 100vh;
-      background: var(--bg);
-      color: var(--ink);
+      background: #0a0e1a;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(255,71,119,.12) 0, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, rgba(46,213,115,.1) 0, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(99,102,241,.08) 0, transparent 60%);
+      color: #e8ecf4;
       font-family: -apple-system, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-blob.b1 {
+      width: 300px; height: 300px;
+      background: rgba(255,71,119,.12);
+      top: -80px; right: -60px;
+      animation: float 8s ease-in-out infinite;
+    }
+    .bg-blob.b2 {
+      width: 250px; height: 250px;
+      background: rgba(46,213,115,.1);
+      bottom: -60px; left: -80px;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    .bg-blob.b3 {
+      width: 200px; height: 200px;
+      background: rgba(99,102,241,.08);
+      top: 50%; left: 50%;
+      animation: pulse-glow 6s ease-in-out infinite;
     }
     .app {
+      position: relative;
+      z-index: 1;
       max-width: 600px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 20px 16px 40px;
+      animation: slide-up .6s ease-out;
     }
-    h1 {
-      font-size: 26px;
-      letter-spacing: -0.3px;
-      font-weight: 700;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,.5);
+      background: rgba(255,255,255,.06);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #2ed573;
+      animation: blink 2s ease-in-out infinite;
     }
     .sub {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 2px;
+      color: rgba(255,255,255,.4);
+      font-size: 12px;
+      letter-spacing: .3px;
+      margin-bottom: 18px;
     }
-    .summary {
-      display: flex;
-      gap: 10px;
-      margin: 18px 0 14px;
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
     }
-    .summary-item {
-      flex: 1;
-      background: var(--panel);
-      border-radius: 10px;
-      padding: 14px;
-      box-shadow: var(--shadow);
+    .bento-item {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      transition: transform .2s, background .2s;
     }
-    .summary-item .label {
+    .bento-item:active { transform: scale(.96); }
+    .bento-item .label {
       display: block;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.3px;
+      color: rgba(255,255,255,.4);
+      font-size: 10px;
+      letter-spacing: .3px;
+      font-weight: 600;
     }
-    .summary-item .value {
+    .bento-item .value {
       display: block;
-      margin-top: 5px;
-      font-size: 20px;
+      margin-top: 4px;
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -.3px;
     }
     .cards { display: flex; flex-direction: column; gap: 10px; }
     .card {
-      background: var(--panel);
-      border-radius: 12px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
       padding: 16px 18px;
-      box-shadow: var(--shadow);
+      transition: transform .2s, background .3s;
+      animation: slide-up .5s ease-out both;
     }
+    .card:nth-child(1) { animation-delay: .1s; }
+    .card:nth-child(2) { animation-delay: .2s; }
+    .card:nth-child(3) { animation-delay: .3s; }
+    .card:hover { background: var(--glass-hover); }
+    .card:active { transform: scale(.98); }
     .card-top {
       display: flex;
       align-items: center;
@@ -78,16 +175,21 @@
     }
     .card-name {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 8px;
     }
+    .card-name .mood {
+      font-size: 20px;
+      line-height: 1;
+    }
     .card-name h2 {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
+      color: #f0f4ff;
     }
     .card-name code {
-      color: var(--muted);
-      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      font-size: 11px;
     }
     .card-right {
       text-align: right;
@@ -95,43 +197,66 @@
     .card-right .price {
       font-size: 22px;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -.5px;
     }
-    .card-right .change {
-      font-size: 13px;
-      font-weight: 600;
-      margin-left: 4px;
+    .card-right .price.is-up { color: var(--up); }
+    .card-right .price.is-down { color: var(--down); }
+    .card-right .change-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      margin-top: 1px;
     }
-    .is-up { color: var(--up); }
-    .is-down { color: var(--down); }
+    .change-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .change-badge.is-up {
+      background: var(--up-bg);
+      color: var(--up);
+    }
+    .change-badge.is-down {
+      background: var(--down-bg);
+      color: var(--down);
+    }
     .card-pl {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,.06);
     }
     .pl-item {
       flex: 1;
       text-align: center;
     }
     .pl-item .label {
-      color: var(--muted);
-      font-size: 11px;
+      color: rgba(255,255,255,.35);
+      font-size: 10px;
     }
     .pl-item .value {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       margin-top: 2px;
+      color: #e8ecf4;
     }
+    .pl-item .value.is-up { color: var(--up); }
+    .pl-item .value.is-down { color: var(--down); }
+    .no-holding { opacity: .5; }
     .chart-wrap {
       margin-top: 10px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
     }
     .chart-range {
       position: relative;
-      height: 20px;
+      height: 22px;
       margin: 0 2px;
     }
     .chart-track {
@@ -140,91 +265,104 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: var(--line);
+      background: rgba(255,255,255,.1);
       transform: translateY(-50%);
       border-radius: 1px;
     }
     .chart-body {
       position: absolute;
-      top: 2px;
-      bottom: 2px;
-      border-radius: 2px;
+      top: 3px;
+      bottom: 3px;
+      border-radius: 3px;
+      transition: all .3s;
     }
     .chart-dot {
       position: absolute;
       top: 50%;
-      width: 10px;
-      height: 10px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
+      transition: all .3s;
     }
     .chart-dot.open {
-      background: var(--muted);
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,.3);
     }
     .chart-dot.cur {
-      width: 12px;
-      height: 12px;
-      border: 2.5px solid;
+      width: 12px; height: 12px;
+      border: 2.5px solid rgba(255,255,255,.8);
+      box-shadow: 0 0 12px rgba(255,255,255,.15);
     }
-    .chart-dot.cur.is-up { background: var(--up); border-color: var(--up); }
-    .chart-dot.cur.is-down { background: var(--down); border-color: var(--down); }
+    .chart-dot.cur.is-up { background: var(--up); border-color: var(--up); box-shadow: 0 0 12px rgba(255,71,87,.3); }
+    .chart-dot.cur.is-down { background: var(--down); border-color: var(--down); box-shadow: 0 0 12px rgba(46,213,115,.3); }
     .chart-labels {
       display: flex;
       justify-content: space-between;
-      margin-top: 6px;
-      font-size: 10px;
-      color: var(--muted);
+      margin-top: 5px;
+      font-size: 9px;
+      color: rgba(255,255,255,.3);
       position: relative;
     }
-    .chart-labels .tag {
-      text-align: center;
-    }
+    .chart-labels .tag { text-align: center; }
     .chart-labels .tag .v {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      color: var(--ink);
+      color: rgba(255,255,255,.7);
     }
     .chart-labels .tag .v.is-up { color: var(--up); }
     .chart-labels .tag .v.is-down { color: var(--down); }
-    .no-holding {
-      opacity: 0.5;
+    .chart-foot {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 10px;
+      color: rgba(255,255,255,.25);
     }
+    .chart-foot .hl { font-weight: 700; font-size: 11px; }
     .note {
       margin-top: 20px;
-      color: var(--muted);
-      font-size: 12px;
+      color: rgba(255,255,255,.2);
+      font-size: 11px;
       text-align: center;
     }
     @media (max-width: 420px) {
-      .app { padding: 16px 12px 32px; }
-      h1 { font-size: 22px; }
-      .summary-item .value { font-size: 17px; }
+      .app { padding: 14px 12px 32px; }
+      .header h1 { font-size: 20px; }
+      .bento { gap: 6px; }
+      .bento-item { padding: 10px 6px; }
+      .bento-item .value { font-size: 15px; }
       .card-right .price { font-size: 19px; }
-      .chart-labels { font-size: 9px; }
-      .chart-labels .tag .v { font-size: 11px; }
-      .chart-body { top: 3px; bottom: 3px; }
+      .chart-labels { font-size: 8px; }
+      .chart-labels .tag .v { font-size: 10px; }
     }
   </style>
 </head>
 <body>
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+
   <div class="app">
-    <h1>📈 光伏组合</h1>
+    <div class="header">
+      <h1>☀️ 光伏组合</h1>
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        实时
+      </div>
+    </div>
     <p class="sub">金刚光伏 · 聚和材料 · 迈为股份</p>
 
-    <div class="summary">
-      <div class="summary-item">
-        <span class="label">持仓市值</span>
+    <div class="bento">
+      <div class="bento-item">
+        <span class="label">💰 持仓市值</span>
         <span class="value" id="totalValue">-</span>
       </div>
-      <div class="summary-item">
-        <span class="label">总盈亏</span>
+      <div class="bento-item">
+        <span class="label">📊 总盈亏</span>
         <span class="value" id="totalPL">-</span>
       </div>
-      <div class="summary-item">
-        <span class="label">收益率</span>
+      <div class="bento-item">
+        <span class="label">🎯 收益率</span>
         <span class="value" id="totalReturn">-</span>
       </div>
     </div>
@@ -240,6 +378,24 @@
       sz300093: { shares: 16900, cost: 18.09 },
     };
 
+    const MOODS = {
+      surge:  { emoji: '🚀', text: '强势拉升' },
+      up:     { emoji: '📈', text: '稳步上涨' },
+      slight: { emoji: '↗️', text: '小幅走高' },
+      flat:   { emoji: '😴', text: '横盘震荡' },
+      down:   { emoji: '📉', text: '小幅回调' },
+      plunge: { emoji: '💧', text: '深度调整' },
+    };
+
+    function getMood(pct) {
+      if (pct >= 5) return MOODS.surge;
+      if (pct >= 2) return MOODS.up;
+      if (pct > 0) return MOODS.slight;
+      if (pct === 0) return MOODS.flat;
+      if (pct > -3) return MOODS.down;
+      return MOODS.plunge;
+    }
+
     function fmt(n) { return n.toFixed(2); }
 
     function arrow(v) {
@@ -252,7 +408,7 @@
       const data = window.STOCK_DATA;
       if (!data || !data.stocks) {
         document.getElementById('stockCards').innerHTML =
-          '<p style="color:var(--muted);padding:20px;text-align:center">暂无数据</p>';
+          '<p style="color:rgba(255,255,255,.3);padding:40px;text-align:center">⏳ 加载中...</p>';
         return;
       }
 
@@ -268,7 +424,7 @@
         const marketValue = hasHolding ? holding.shares * s.price : 0;
         const pl = marketValue - costTotal;
         const plPct = costTotal > 0 ? (pl / costTotal) * 100 : 0;
-        const dayPL = hasHolding ? holding.shares * s.change : 0;
+        const mood = getMood(s.changePct);
 
         if (hasHolding) {
           totalValue += marketValue;
@@ -284,39 +440,43 @@
           <div class="card ${cardCls}">
             <div class="card-top">
               <div class="card-name">
-                <h2>${s.name}</h2>
-                <code>${s.code}</code>
+                <span class="mood">${mood.emoji}</span>
+                <div>
+                  <h2>${s.name}</h2>
+                  <code>${s.code} · ${mood.text}</code>
+                </div>
               </div>
-              <div class="card-right ${cls}">
-                <span class="price">${fmt(s.price)}</span>
-                <span class="change">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${fmt(s.change)}</span>
-                <span class="change">(${s.changePct >= 0 ? '+' : ''}${s.changePct}%)</span>
+              <div class="card-right">
+                <div class="price ${cls}">${fmt(s.price)}</div>
+                <div class="change-row">
+                  <span class="change-badge ${cls}">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${s.changePct}%</span>
+                </div>
               </div>
             </div>
             ${hasHolding ? `
             <div class="card-pl">
               <div class="pl-item">
-                <div class="label">持仓</div>
+                <div class="label">🧾 持仓</div>
                 <div class="value">${fmt(holding.shares / 10000, 2)} 万股</div>
               </div>
               <div class="pl-item">
-                <div class="label">成本</div>
+                <div class="label">💵 成本</div>
                 <div class="value">${fmt(holding.cost)}</div>
               </div>
-              <div class="pl-item ${plCls}">
-                <div class="label">盈亏</div>
-                <div class="value">${pl >= 0 ? '+' : ''}${fmt(pl)}</div>
+              <div class="pl-item">
+                <div class="label">${pl >= 0 ? '💰' : '💸'} 盈亏</div>
+                <div class="value ${plCls}">${pl >= 0 ? '+' : ''}${fmt(pl)}</div>
               </div>
-              <div class="pl-item ${plCls}">
-                <div class="label">收益率</div>
-                <div class="value">${plPct >= 0 ? '+' : ''}${plPct.toFixed(1)}%</div>
+              <div class="pl-item">
+                <div class="label">📊 收益率</div>
+                <div class="value ${plCls}">${plPct >= 0 ? '+' : ''}${plPct.toFixed(1)}%</div>
               </div>
             </div>
             ` : `
             <div class="card-pl">
               <div class="pl-item" style="flex:2">
-                <div class="label">未记录持仓</div>
-                <div class="value" style="color:var(--muted);font-size:12px">点击编辑</div>
+                <div class="label">📋 未记录持仓</div>
+                <div class="value" style="color:rgba(255,255,255,.2);font-size:12px">点击编辑</div>
               </div>
             </div>
             `}
@@ -328,15 +488,14 @@
                 <div class="chart-dot cur ${cls}" style="left:${((s.price - s.low) / (s.high - s.low)) * 100}%"></div>
               </div>
               <div class="chart-labels">
-                <div class="tag" style="text-align:left"><div>最低</div><div class="v">${fmt(s.low)}</div></div>
-                <div class="tag" style="text-align:center"><div>今开</div><div class="v">${fmt(s.open)}</div></div>
-                <div class="tag" style="text-align:center"><div>现价 ${arrow(s.change)}</div><div class="v ${cls}">${fmt(s.price)}</div></div>
-                <div class="tag" style="text-align:right"><div>最高</div><div class="v">${fmt(s.high)}</div></div>
+                <div class="tag" style="text-align:left"><div>低</div><div class="v">${fmt(s.low)}</div></div>
+                <div class="tag" style="text-align:center"><div>开</div><div class="v">${fmt(s.open)}</div></div>
+                <div class="tag" style="text-align:center"><div>现 ${arrow(s.change)}</div><div class="v ${cls}">${fmt(s.price)}</div></div>
+                <div class="tag" style="text-align:right"><div>高</div><div class="v">${fmt(s.high)}</div></div>
               </div>
-              <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--muted)">
+              <div class="chart-foot">
                 <span>昨收 ${fmt(s.prevClose)}</span>
-                <span class="${cls}" style="font-weight:700;font-size:11px">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${s.changePct}%</span>
-                <span>振幅 ${((s.high - s.low) / s.prevClose * 100).toFixed(2)}%</span>
+                <span class="hl ${cls}">振幅 ${((s.high - s.low) / s.prevClose * 100).toFixed(2)}%</span>
               </div>
             </div>
           </div>
@@ -355,7 +514,7 @@
         totalReturn >= 0 ? 'is-up value' : 'is-down value';
 
       document.getElementById('updateNote').textContent =
-        `数据来源：${data.meta.source} · 更新于 ${data.meta.updatedAt}`;
+        `🔄 ${data.meta.source} · ${data.meta.updatedAt}`;
     }
 
     render();
