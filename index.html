@@ -124,27 +124,71 @@
       font-weight: 700;
       margin-top: 2px;
     }
-    .detail-table {
-      width: 100%;
+    .chart-wrap {
       margin-top: 10px;
-      padding-top: 10px;
+      padding-top: 14px;
       border-top: 1px solid var(--line);
-      border-collapse: collapse;
     }
-    .detail-table td {
-      text-align: center;
-      padding: 4px 0;
-      width: 25%;
+    .chart-range {
+      position: relative;
+      height: 20px;
+      margin: 0 2px;
     }
-    .detail-table .label {
+    .chart-track {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--line);
+      transform: translateY(-50%);
+      border-radius: 1px;
+    }
+    .chart-body {
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      border-radius: 2px;
+    }
+    .chart-dot {
+      position: absolute;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    .chart-dot.open {
+      background: var(--muted);
+      width: 6px;
+      height: 6px;
+    }
+    .chart-dot.cur {
+      width: 12px;
+      height: 12px;
+      border: 2.5px solid;
+    }
+    .chart-dot.cur.is-up { background: var(--up); border-color: var(--up); }
+    .chart-dot.cur.is-down { background: var(--down); border-color: var(--down); }
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 10px;
       color: var(--muted);
-      font-size: 11px;
+      position: relative;
     }
-    .detail-table .value {
-      font-size: 13px;
-      font-weight: 600;
-      margin-top: 2px;
+    .chart-labels .tag {
+      text-align: center;
     }
+    .chart-labels .tag .v {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .chart-labels .tag .v.is-up { color: var(--up); }
+    .chart-labels .tag .v.is-down { color: var(--down); }
     .no-holding {
       opacity: 0.5;
     }
@@ -159,8 +203,9 @@
       h1 { font-size: 22px; }
       .summary-item .value { font-size: 17px; }
       .card-right .price { font-size: 19px; }
-      .detail-table td { padding: 3px 1px; }
-      .detail-table .value { font-size: 12px; }
+      .chart-labels { font-size: 9px; }
+      .chart-labels .tag .v { font-size: 11px; }
+      .chart-body { top: 3px; bottom: 3px; }
     }
   </style>
 </head>
@@ -275,18 +320,25 @@
               </div>
             </div>
             `}
-            <table class="detail-table">
-              <tr>
-                <td><div class="label">今开</div><div class="value">${fmt(s.open)}</div></td>
-                <td><div class="label">昨收</div><div class="value">${fmt(s.prevClose)}</div></td>
-                <td><div class="label">最高</div><div class="value">${fmt(s.high)}</div></td>
-                <td><div class="label">最低</div><div class="value">${fmt(s.low)}</div></td>
-              </tr>
-              <tr>
-                <td colspan="2"><div class="label">涨跌幅</div><div class="value ${cls}">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${s.changePct}%</div></td>
-                <td colspan="2"><div class="label">振幅</div><div class="value">${((s.high - s.low) / s.prevClose * 100).toFixed(2)}%</div></td>
-              </tr>
-            </table>
+            <div class="chart-wrap">
+              <div class="chart-range">
+                <div class="chart-track"></div>
+                <div class="chart-body" style="left:${((Math.min(s.open, s.price) - s.low) / (s.high - s.low)) * 100}%;width:${(Math.abs(s.price - s.open) / (s.high - s.low)) * 100}%;background:var(--${s.change >= 0 ? 'up' : 'down'})"></div>
+                <div class="chart-dot open" style="left:${((s.open - s.low) / (s.high - s.low)) * 100}%"></div>
+                <div class="chart-dot cur ${cls}" style="left:${((s.price - s.low) / (s.high - s.low)) * 100}%"></div>
+              </div>
+              <div class="chart-labels">
+                <div class="tag" style="text-align:left"><div>最低</div><div class="v">${fmt(s.low)}</div></div>
+                <div class="tag" style="text-align:center"><div>今开</div><div class="v">${fmt(s.open)}</div></div>
+                <div class="tag" style="text-align:center"><div>现价 ${arrow(s.change)}</div><div class="v ${cls}">${fmt(s.price)}</div></div>
+                <div class="tag" style="text-align:right"><div>最高</div><div class="v">${fmt(s.high)}</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:var(--muted)">
+                <span>昨收 ${fmt(s.prevClose)}</span>
+                <span class="${cls}" style="font-weight:700;font-size:11px">${arrow(s.change)} ${s.change >= 0 ? '+' : ''}${s.changePct}%</span>
+                <span>振幅 ${((s.high - s.low) / s.prevClose * 100).toFixed(2)}%</span>
+              </div>
+            </div>
           </div>
         `;
       }).join('');
