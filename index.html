@@ -505,15 +505,52 @@
       document.getElementById('updateNote').textContent =
         `⏺ ${data.meta.source} · ${data.meta.updatedAt}`;
     }
+    function fetchLive() {
+      return new Promise((resolve, reject) => {
+        const codes = ['sz300093', 'sh688503', 'sz300751'];
+        const s = document.createElement('script');
+        s.src = `https://hq.sinajs.cn/list=${codes.join(',')}`;
+        const t = setTimeout(() => { s.onload = s.onerror = null; reject('timeout'); }, 8000);
+        s.onload = () => {
+          clearTimeout(t);
+          try {
+            const stocks = codes.map(code => {
+              const key = 'hq_str_' + code;
+              const raw = window[key];
+              if (!raw || raw === '') return null;
+              const p = raw.split(',');
+              if (p.length < 12) return null;
+              return {
+                code, name: p[0],
+                open: +p[1], prevClose: +p[2], price: +p[3],
+                high: +p[4], low: +p[5],
+                volume: (+p[6]||0) * 100, amount: +p[7]||0,
+                changePct: +p[8], change: +p[9],
+                date: p[10], time: p[11],
+              };
+            }).filter(Boolean);
+            stocks.length ? resolve(stocks) : reject('no data');
+          } catch(e) { reject(e); }
+        };
+        s.onerror = () => { clearTimeout(t); reject('load fail'); };
+        document.head.appendChild(s);
+      });
+    }
+
     render();
 
-    let sec = 30;
-    const refreshEl = document.getElementById('updateNote');
+    fetchLive().then(stocks => {
+      window.STOCK_DATA = { meta: { source: '新浪财经(实时)', updatedAt: '实时' }, stocks };
+      render();
+      document.getElementById('updateNote').textContent = '⏺ 新浪实时 · 每30s自动更新';
+    }).catch(() => {});
+
     setInterval(() => {
-      sec--;
-      if (sec <= 0) { location.reload(); }
-      refreshEl.textContent = `⏺ 新浪财经 · ${sec}s 后自动刷新`;
-    }, 1000);
+      fetchLive().then(stocks => {
+        window.STOCK_DATA.stocks = stocks;
+        render();
+      }).catch(() => {});
+    }, 30000);
   </script>
 </body>
 </html>
